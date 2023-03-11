@@ -2,14 +2,21 @@ import Login from "./components/Login";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
+import Layout from "./components/Layout";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
   const handleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
     onError: (error) => console.log("Login Failed", error),
   });
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
   useEffect(() => {
     if (user) {
       axios
@@ -23,19 +30,28 @@ function App() {
           }
         )
         .then((res) => {
-          setProfile(res.data);
+          localStorage.setItem("user", JSON.stringify(res.data));
+          setUser(res.data);
         })
         .catch((err) => console.log(err));
     }
   }, [user]);
+
   const logOut = () => {
     googleLogout();
-    setProfile(null);
+    setUser(null);
+    localStorage.clear();
   };
 
   return (
     <React.StrictMode>
-      <div>{profile ? "layout" : <Login handleLogin={handleLogin} />}</div>
+      <div>
+        {user ? (
+          <Layout>'Hello {user.name}'</Layout>
+        ) : (
+          <Login handleLogin={handleLogin} />
+        )}
+      </div>
     </React.StrictMode>
   );
 }

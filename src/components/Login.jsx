@@ -1,4 +1,4 @@
-import { Label, TextInput, Checkbox, Button } from "flowbite-react";
+import { Button } from "flowbite-react";
 
 const Login = ({ handleLogin }) => {
   // Logout function to log the user out of google and set the profile array to be null
