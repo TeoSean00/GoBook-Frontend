@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
+import Button from "./components/Button";
+import { Link } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -46,12 +48,22 @@ function App() {
     localStorage.clear();
   };
 
+  const profilePageRedirect = () => {
+    console.log("Redirecting to Profile Page now")
+  }
+
   return (
     <React.StrictMode>
       <Toaster />
       <div>
         {user ? (
-          <Layout>'Hello {user.name}'</Layout>
+          <Layout>
+            'Hello {user.name}'
+            <Link to="/profile" state={user}>
+              <Button name="Profile Page" onClick={profilePageRedirect} />
+            </Link>
+            <Button name="Google Sign Out" onClick={logOut} />
+          </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
         )}
