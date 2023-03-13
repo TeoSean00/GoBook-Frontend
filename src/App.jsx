@@ -53,7 +53,7 @@ function App() {
       <Toaster position="bottom-right" reverseOrder={false} />
       <div>
         {user ? (
-          <Layout profileImage={user.picture}>
+          <Layout user={user}>
             <div className="my-5">Hello {user.name}</div>
             <br />
             <Button name="Sign Out" onClick={logOut} />
