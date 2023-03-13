@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
+import Button from "./components/Button";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,6 +33,7 @@ function App() {
     onSuccess: (codeResponse) => handleFetch(codeResponse),
     onError: (error) => console.log("Login Failed", error),
   });
+  // note: good practice to not fetch API from useEffect hook but not important
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -48,10 +50,14 @@ function App() {
 
   return (
     <React.StrictMode>
-      <Toaster />
+      <Toaster position="bottom-right" reverseOrder={false} />
       <div>
         {user ? (
-          <Layout>'Hello {user.name}'</Layout>
+          <Layout profileImage={user.picture}>
+            <div className="my-5">Hello {user.name}</div>
+            <br />
+            <Button name="Sign Out" onClick={logOut} />
+          </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
         )}
