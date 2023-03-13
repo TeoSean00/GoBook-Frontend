@@ -5,7 +5,6 @@ import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
-import { Link } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -49,16 +48,12 @@ function App() {
     localStorage.clear();
   };
 
-  const profilePageRedirect = () => {
-    console.log("Redirecting to Profile Page now")
-  }
-
   return (
     <React.StrictMode>
       <Toaster position="bottom-right" reverseOrder={false} />
       <div>
         {user ? (
-          <Layout profileImage={user.picture}>
+          <Layout user={user}>
             <div className="my-5">Hello {user.name}</div>
             <br />
             <Button name="Sign Out" onClick={logOut} />
