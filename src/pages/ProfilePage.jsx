@@ -11,6 +11,7 @@ import {
   SiTypescript,
   SiPrisma,
 } from "react-icons/si";
+import CourseCard from "../components/CourseCard";
 
 function ProfilePage() {
   const location = useLocation();
@@ -34,12 +35,6 @@ function ProfilePage() {
             {state.email}
           </span>
           <div className="mt-4 flex space-x-3 md:mt-6">
-            {/* <a
-              href="#"
-              className="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Make Booking
-            </a> */}
             <Button name="Make Booking" onClick={() => {}} />
           </div>
           <div className=" pt-10">
@@ -88,61 +83,18 @@ function ProfilePage() {
               Registered Classes
             </h5>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-              <a
-                href="#"
-                className="block max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:p-6"
-              >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {" "}
-                  Fullstack Web Development
-                </h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Here are the biggest enterprise technology acquisitions of
-                  2021 so far, in reverse chronological order.
-                </p>
-              </a>
-
-              <a
-                href="#"
-                className="block max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:p-6"
-              >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Data Science and Machine Learning with Python{" "}
-                </h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Here are the biggest enterprise technology acquisitions of
-                  2021 so far, in reverse chronological order.
-                </p>
-              </a>
-              <a
-                href="#"
-                className="block max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:p-6"
-              >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  UI/UX Design and Prototyping
-                </h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Here are the biggest enterprise technology acquisitions of
-                  2021 so far, in reverse chronological order.
-                </p>
-              </a>
-
-              <a
-                href="#"
-                className="block max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:p-6"
-              >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Agile Software Development with Scrum
-                </h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Here are the biggest enterprise technology acquisitions of
-                  2021 so far, in reverse chronological order.
-                </p>
-              </a>
+              {courses.map((course) => {
+                return (
+                  <CourseCard
+                    courseName={course.name}
+                    courseDesc={course.desc}
+                  />
+                );
+              })}
             </div>
           </div>
           {/* Reviews */}
-          <div className=" pt-10">
+          {/* <div className=" pt-10">
             <h5 className="pb-5 text-center text-xl font-bold  dark:text-gray-300">
               Reviews
             </h5>
@@ -180,7 +132,7 @@ function ProfilePage() {
                 </blockquote>
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>
@@ -188,3 +140,23 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
+
+//query from backend (each object should have another keyvalue pair for the route to its indiv page)
+const courses = [
+  {
+    name: "Fullstack Web Development",
+    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+  },
+  {
+    name: "UI/UX Design and Prototyping",
+    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+  },
+  {
+    name: "Agile Software Development with Scrum",
+    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+  },
+  {
+    name: "Data Science and Machine Learning with Python",
+    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+  },
+];

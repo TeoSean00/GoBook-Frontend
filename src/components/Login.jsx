@@ -2,7 +2,7 @@ import Button from "./Button";
 import booking from "../assets/booking.svg";
 const Login = ({ handleLogin }) => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-200 py-12 px-4 dark:bg-gray-700 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center bg-gray-200 py-12 px-4 dark:bg-gray-800 sm:px-6 lg:px-8">
       <div className="max-w-sm rounded-xl border border-gray-200 bg-gray-100 shadow dark:border-gray-700 dark:bg-gray-800">
         <div>
           <img
