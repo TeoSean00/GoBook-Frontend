@@ -5,6 +5,7 @@ import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -54,7 +55,6 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
-            <div className="my-5">Hello {user.name}</div>
             <br />
             <Button name="Sign Out" onClick={logOut} />
           </Layout>
