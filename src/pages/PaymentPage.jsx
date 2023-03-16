@@ -15,10 +15,11 @@ export default function PaymentPage() {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:8080/create-payment-intent", {
+        fetch("http://localhost:5007/booking/createPayment", {
         method: "POST",
+        mode: 'cors',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        body: JSON.stringify({ items: [{ "id": "xl-tshirt" }] }),
         })
         .then((res) => res.json())
         .then((data) => setClientSecret(data.clientSecret));
