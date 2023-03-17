@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
+import CourseCardLayout from "../components/CourseCardLayout";
 import {
   SiTailwindcss,
   SiAdobephotoshop,
@@ -82,16 +83,11 @@ function ProfilePage() {
             <h5 className="pb-5 text-center text-xl font-bold  dark:text-gray-300">
               Registered Classes
             </h5>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-              {courses.map((course) => {
-                return (
-                  <CourseCard
-                    courseName={course.name}
-                    courseDesc={course.desc}
-                  />
-                );
+            <CourseCardLayout>
+              {courses.map((course, ind) => {
+                return <CourseCard key={ind} course={course} />;
               })}
-            </div>
+            </CourseCardLayout>
           </div>
           {/* Reviews */}
           {/* <div className=" pt-10">
@@ -144,19 +140,27 @@ export default ProfilePage;
 //query from backend (each object should have another keyvalue pair for the route to its indiv page)
 const courses = [
   {
-    name: "Fullstack Web Development",
-    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    className: "Fullstack Web Development",
+    objective:
+      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    fees: 1430,
   },
   {
-    name: "UI/UX Design and Prototyping",
-    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    className: "UI/UX Design and Prototyping",
+    objective:
+      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    fees: 1430,
   },
   {
-    name: "Agile Software Development with Scrum",
-    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    className: "Agile Software Development with Scrum",
+    objective:
+      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    fees: 1430,
   },
   {
-    name: "Data Science and Machine Learning with Python",
-    desc: " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    className: "Data Science and Machine Learning with Python",
+    objective:
+      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    fees: 1430,
   },
 ];
