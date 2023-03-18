@@ -6,7 +6,7 @@ import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
 import ProfilePage from "./pages/ProfilePage";
-
+import Hero from "./components/Hero";
 function App() {
   const [user, setUser] = useState(null);
   const handleFetch = async (codeResponse) => {
@@ -55,6 +55,7 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
+            <Hero />
             <br />
             <Button name="Sign Out" onClick={logOut} />
           </Layout>
