@@ -57,7 +57,7 @@ function App() {
           <Layout user={user}>
             <Hero />
             <br />
-            <Button name="Sign Out" onClick={logOut} />
+            <Button name="Sign Out" onClick={logOut} color="red" />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />

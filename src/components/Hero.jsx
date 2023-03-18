@@ -33,7 +33,7 @@ const Hero = () => {
                 data-aos-delay="300"
               >
                 <Button name="Start Booking" />
-                <Button name="Write a review" />
+                <Button name="Write a review" color="gray" />
               </div>
             </div>
           </div>
