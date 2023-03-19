@@ -32,8 +32,8 @@ const Hero = () => {
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >
-                <Button name="Start Booking" />
-                <Button name="Write a review" color="gray" />
+                <Button name="Start Booking" color={"blue"} />
+                <Button name="Write a review" color={"gray"} />
               </div>
             </div>
           </div>
