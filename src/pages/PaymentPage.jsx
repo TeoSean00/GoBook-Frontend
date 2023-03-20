@@ -14,14 +14,15 @@ export default function PaymentPage() {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5007/booking/createPayment", {
+        fetch("http://localhost:5008/booking/createPayment", {
         method: "POST",
         mode: 'cors',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: [{ "id": "xl-tshirt" }] }),
         })
         .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
+        .then((data) => setClientSecret(data.clientSecret))
+
     }, []);
 
   const appearance = {
@@ -35,6 +36,7 @@ export default function PaymentPage() {
   return (
     <React.StrictMode>
       <div>
+        <h2>You are being billed for one class of "className" here</h2>
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm />
