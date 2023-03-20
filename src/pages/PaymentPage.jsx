@@ -10,20 +10,46 @@ const stripePromise = loadStripe(
 );
 
 export default function PaymentPage() {
-  const [clientSecret, setClientSecret] = useState("");
+  var [clientSecret, setClientSecret] = useState("");
+  var [selectedClass, setSelectedClass] = useState(null);
 
-    useEffect(() => {
-        // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5008/booking/createPayment", {
-        method: "POST",
-        mode: 'cors',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ "id": "xl-tshirt" }] }),
-        })
-        .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret))
+  function selectClass() {
+    var data = {
+      userEmail: "celov54484@gpipes.com",
+      userName: "celo",
+      orderID: "4500",
+      courseName: "Data Structure Algorithms",
+      coursePrice: 2000,
+      courseDescription:
+        "A 3rd semester course at SMU, continues to develop students' understanding of object oriented programming, memory management",
+      classID: 3,
+      runID: 1,
+      userID: 10,
+    };
 
-    }, []);
+    fetch("http://localhost:5008/booking/createPayment", {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+
+    console.log(data);
+  }
+
+  // useEffect(() => {
+  //   // Create PaymentIntent as soon as the page loads
+  //   fetch("http://localhost:5008/booking/createPayment", {
+  //     method: "POST",
+  //     mode: "cors",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(purchase),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setClientSecret(data.clientSecret));
+  // }, []);
 
   const appearance = {
     theme: "stripe",
@@ -36,9 +62,16 @@ export default function PaymentPage() {
   return (
     <React.StrictMode>
       <div>
-        <h2>You are being billed for one class of "className" here</h2>
+        <button
+          type="button"
+          class="mr-2 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          onClick={selectClass}
+        >
+          Select Class
+        </button>
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
+            <h2>You have selected {selectedClass}</h2>
             <CheckoutForm />
           </Elements>
         )}
