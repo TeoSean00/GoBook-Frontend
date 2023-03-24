@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
 import ProfilePage from "./pages/ProfilePage";
 import Hero from "./components/Hero";
+import BookingCard from "./components/BookingCard";
 function App() {
   const [user, setUser] = useState(null);
   const handleFetch = async (codeResponse) => {
@@ -58,6 +59,7 @@ function App() {
             <Hero />
             <br />
             <Button name="Sign Out" onClick={logOut} color="red" />
+            <BookingCard />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
