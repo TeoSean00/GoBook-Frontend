@@ -14,10 +14,10 @@ const CourseCard = ({ course }) => {
         <p className="text-center font-normal text-gray-700 dark:text-gray-400 md:text-start">
           {course.objective}
         </p>
-        <div className="mt-4 flex items-center justify-evenly text-gray-900 dark:text-white md:justify-between">
+        {/* <div className="mt-4 flex items-center justify-evenly text-gray-900 dark:text-white md:justify-between">
           <span className="text-lg font-bold">${course.fees}</span>
-          <Button name="Enroll Again" />
-        </div>
+          <Button name="Enroll" color="blue" />
+        </div> */}
       </Link>
     </div>
   );
