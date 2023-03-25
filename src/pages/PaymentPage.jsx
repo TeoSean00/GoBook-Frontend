@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import "../assets/css/PaymentPage.css";
+import io from "socket.io-client";
 
 const stripePromise = loadStripe(
   "pk_test_51MkznJJTqG9NvRuTCvhU1y4RyggSstQYI2woG0L2DQywIKMFmvYVSqyS6uwHfCsK1mdv5Nvo6KP1NzAnR0wlukX900AB3llvRf"
@@ -13,20 +14,41 @@ export default function PaymentPage() {
   var [clientSecret, setClientSecret] = useState("");
   var [selectedClass, setSelectedClass] = useState(null);
 
-  function selectClass() {
-    var data = {
-      userEmail: "celov54484@gpipes.com",
-      userName: "celo",
-      orderID: "4500",
-      courseName: "Data Structure Algorithms",
-      coursePrice: 2000,
-      courseDescription:
-        "A 3rd semester course at SMU, continues to develop students' understanding of object oriented programming, memory management",
-      classID: 3,
-      runID: 1,
-      userID: 10,
-    };
+  var data = {
+    userEmail: "celov54484@gpipes.com",
+    userName: "celo",
+    orderID: "4500",
+    courseName: "Data Structure Algorithms",
+    coursePrice: 2000,
+    courseDescription:
+      "A 3rd semester course at SMU, continues to develop students' understanding of object oriented programming, memory management",
+    classID: 3,
+    runID: 1,
+    userID: 10,
+  };
 
+  useEffect(() => {
+    const socket = io("http://localhost:5010");
+
+    socket.on("connect", () => {
+      console.log("WebSocket connection opened");
+    });
+
+    socket.on("disconnect", () => {
+      console.log("WebSocket connection closed");
+    });
+
+    socket.on("message", (data) => {
+      console.log("Received message:", data);
+      // Update the React state or UI based on the message data
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  function selectClass() {
     fetch("http://localhost:5008/booking/createPayment", {
       method: "POST",
       mode: "cors",
@@ -37,6 +59,16 @@ export default function PaymentPage() {
       .then((data) => setClientSecret(data.clientSecret));
 
     console.log(data);
+  }
+
+  const [count, setCount] = useState(0);
+
+  var handleClick = () => {
+    setCount(count + 1);
+  };
+
+  function MyButton() {
+    return <button onClick={handleClick}>I was clicked {count} times!</button>;
   }
 
   // useEffect(() => {
@@ -62,9 +94,11 @@ export default function PaymentPage() {
   return (
     <React.StrictMode>
       <div>
+        <h2>{data.courseName}</h2>
+        <MyButton />
         <button
           type="button"
-          class="mr-2 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="mr-2 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           onClick={selectClass}
         >
           Select Class
