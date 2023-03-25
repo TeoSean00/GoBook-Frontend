@@ -5,7 +5,7 @@ export default function Navbar({ user }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <>
-      <nav className="container mx-auto rounded-lg border-gray-200 bg-gray-50 py-3 px-5 dark:border-gray-700 dark:bg-gray-800 ">
+      <nav className="container mx-auto rounded-lg border border-gray-200 bg-gray-50 py-3 px-5 shadow dark:border-gray-700 dark:bg-gray-800">
         <div className="container mx-auto flex flex-wrap items-center  justify-between gap-x-5  md:flex-nowrap">
           <div className=" flex w-full justify-between gap-x-2">
             <div className="flex gap-x-3">
@@ -39,7 +39,7 @@ export default function Navbar({ user }) {
               />
             </div>
             <button
-              className=" block cursor-pointer  rounded border border-solid border-transparent bg-transparent px-3 py-1 text-xl leading-none text-gray-700 outline-none hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 md:hidden"
+              className=" block cursor-pointer  rounded border border-solid border-transparent bg-transparent px-1 py-1 text-xl leading-none text-gray-700 outline-none hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 md:hidden"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -80,22 +80,6 @@ export default function Navbar({ user }) {
                   About
                 </Link>
               </li>
-              {/* <li className="flex h-full w-full cursor-alias items-center justify-end rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:justify-center md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white">
-                <a
-                  className="flex items-center text-xs font-bold uppercase leading-snug text-gray-700  hover:opacity-75"
-                  href="#"
-                >
-                  <span className="ml-2">Find Course</span>
-                </a>
-              </li>
-              <li className="flex h-full w-full cursor-alias items-center justify-end rounded  py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:justify-center md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white">
-                <a
-                  className="flex  items-center text-xs font-bold uppercase leading-snug text-gray-700  hover:opacity-75"
-                  href="#"
-                >
-                  <span className="ml-2">About</span>
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>

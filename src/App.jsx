@@ -5,12 +5,8 @@ import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
-
-//Stuff for payments page
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./pages/CheckoutForm";
-
+import ProfilePage from "./pages/ProfilePage";
+import Hero from "./components/Hero";
 function App() {
   const [user, setUser] = useState(null);
   const handleFetch = async (codeResponse) => {
@@ -59,9 +55,9 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
-            <div className="my-5">Hello {user.name}</div>
+            <Hero />
             <br />
-            <Button name="Sign Out" onClick={logOut} />
+            <Button name="Sign Out" onClick={logOut} color="red" />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />

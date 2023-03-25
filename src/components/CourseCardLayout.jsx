@@ -1,0 +1,9 @@
+import React from "react";
+
+const CourseCardLayout = ({ children }) => {
+  return (
+    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">{children}</div>
+  );
+};
+
+export default CourseCardLayout;
