@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CourseCardLayout from "./CourseCardLayout";
 import CourseCard from "./CourseCard";
-const CourseCatalogue = () => {
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
+const CourseCatalogue = ({ user }) => {
   const [courseData, setCourseData] = useState();
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
+
   const handleFetchClassData = async (codeRes) => {
     await axios
       //configured api route to localhost:5006 for mac
@@ -26,11 +30,17 @@ const CourseCatalogue = () => {
     <section className="mt-2  w-full rounded-lg border  border-gray-200 bg-gray-50 py-5 shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {" "}
-        <div className="flex  flex-col items-center pb-10">
+        <div ref={parent} className="flex  flex-col items-center pb-10">
           {courseData ? (
             <CourseCardLayout>
-              {courseData.map((course, ind) => {
-                return <CourseCard key={ind} course={course} />;
+              {courseData.map((course) => {
+                return (
+                  <CourseCard
+                    key={course["_id"]["$oid"]}
+                    course={course}
+                    user={user}
+                  />
+                );
               })}
             </CourseCardLayout>
           ) : (

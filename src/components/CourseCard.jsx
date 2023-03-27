@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-const CourseCard = ({ course }) => {
+const CourseCard = ({ course, user }) => {
   return (
     <div>
       <Link
-        to=""
+        to={`/courses/${course.className}/${course["_id"]["$oid"]}`}
+        state={user}
         className="block  max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 sm:h-full md:p-6"
       >
         <h5

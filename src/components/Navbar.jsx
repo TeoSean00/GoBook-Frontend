@@ -42,7 +42,7 @@ export default function Navbar({ user }) {
                 >
                   <img
                     className=" h-7 w-7 rounded-full "
-                    src={user.picture}
+                    src={user?.picture}
                     alt="profile image"
                   />
                 </Link>
