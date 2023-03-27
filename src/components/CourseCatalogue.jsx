@@ -34,7 +34,27 @@ const CourseCatalogue = () => {
               })}
             </CourseCardLayout>
           ) : (
-            ""
+            <div className="py-12 md:pt-40 md:pb-20">
+              {/* Section header */}
+              <div className="pb-12 text-center text-gray-700 md:pb-16">
+                <h1
+                  className="mb-4 text-3xl font-medium leading-tight tracking-tight dark:text-gray-200"
+                  data-aos="zoom-y-out"
+                >
+                  Course data can only be accessed locally! <br /> Checkout our
+                  <a
+                    href="https://github.com/TeoSean00/ESD-ClassBookingSystem-Frontend"
+                    className="cursor-alias"
+                    target="_blank"
+                  >
+                    {" "}
+                    <span className="bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent">
+                      Github
+                    </span>
+                  </a>
+                </h1>
+              </div>
+            </div>
           )}
         </div>
       </div>
