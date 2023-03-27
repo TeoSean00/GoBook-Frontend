@@ -36,7 +36,7 @@ function ProfilePage() {
             {state.email}
           </span>
           <div className="mt-4 flex space-x-3 md:mt-6">
-            <Button name="Make Booking" onClick={() => {}} />
+            <Button name="Make Booking" color="blue" />
           </div>
           <div className=" pt-10">
             <h5 className="pb-5 text-center text-xl font-bold dark:text-gray-300">
@@ -89,46 +89,6 @@ function ProfilePage() {
               })}
             </CourseCardLayout>
           </div>
-          {/* Reviews */}
-          {/* <div className=" pt-10">
-            <h5 className="pb-5 text-center text-xl font-bold  dark:text-gray-300">
-              Reviews
-            </h5>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-              <a
-                href=""
-                className="block max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:p-6"
-              >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {" "}
-                  Fullstack Web Development
-                </h5>
-                <blockquote className="text-sm font-semibold italic text-gray-900 dark:text-white">
-                  <p>
-                    "Flowbite is just awesome. It contains tons of predesigned
-                    components and pages starting from login screen to complex
-                    dashboard. Perfect choice for your next SaaS application."
-                  </p>
-                </blockquote>
-              </a>
-
-              <a
-                href="#"
-                className="block max-w-sm rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:p-6"
-              >
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  UI/UX Design and Prototyping
-                </h5>
-                <blockquote className="text-sm font-semibold italic text-gray-900 dark:text-white">
-                  <p>
-                    "Flowbite is just awesome. It contains tons of predesigned
-                    components and pages starting from login screen to complex
-                    dashboard. Perfect choice for your next SaaS application."
-                  </p>
-                </blockquote>
-              </a>
-            </div>
-          </div> */}
         </div>
       </div>
     </Layout>

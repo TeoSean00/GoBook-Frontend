@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
 import Hero from "./components/Hero";
+import CourseCatalogue from "./components/CourseCatalogue";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -56,7 +57,9 @@ function App() {
         {user ? (
           <Layout user={user}>
             <Hero />
-            <br />
+
+            <CourseCatalogue />
+            <div className="mt-2"></div>
             <Button name="Sign Out" onClick={logOut} color="red" />
           </Layout>
         ) : (
