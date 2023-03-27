@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CourseCardLayout from "./CourseCardLayout";
 import CourseCard from "./CourseCard";
-const CourseCatalogue = () => {
+const CourseCatalogue = ({ user }) => {
   const [courseData, setCourseData] = useState();
   const handleFetchClassData = async (codeRes) => {
     await axios
@@ -29,8 +29,14 @@ const CourseCatalogue = () => {
         <div className="flex  flex-col items-center pb-10">
           {courseData ? (
             <CourseCardLayout>
-              {courseData.map((course, ind) => {
-                return <CourseCard key={ind} course={course} />;
+              {courseData.map((course) => {
+                return (
+                  <CourseCard
+                    key={course["_id"]["$oid"]}
+                    course={course}
+                    user={user}
+                  />
+                );
               })}
             </CourseCardLayout>
           ) : (
