@@ -2,7 +2,9 @@ import React from "react";
 
 const CourseCardLayout = ({ children }) => {
   return (
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">{children}</div>
+    <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+      {children}
+    </div>
   );
 };
 
