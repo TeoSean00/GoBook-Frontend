@@ -12,7 +12,7 @@ const AppRoutes = () => (
     <Route exact path="/profile" element={<ProfilePage />} />
     <Route exact path="/about" element={<About />} />
     <Route exact path="/courses" element={<Courses />} />
-    <Route exact path="/courses/:name" element={<CourseDescription />} />
+    <Route exact path="/courses/:name/:id" element={<CourseDescription />} />
   </Routes>
 );
 
