@@ -11,6 +11,7 @@ const CourseDescription = () => {
   const { name, id } = useParams();
   const [courseDesc, setCourseDesc] = useState();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
+  const [selectedBooking, setSelectedBooking] = useState();
 
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
@@ -27,8 +28,8 @@ const CourseDescription = () => {
     handleFetchCourseDescription();
   }, []);
   useEffect(() => {
-    console.log("🚀 courseDesc:", courseDesc?.courseRuns);
-  }, [courseDesc]);
+    console.log("🚀 selectedBooking:", selectedBooking);
+  }, [selectedBooking]);
   return (
     <Layout user={state}>
       <section
@@ -42,14 +43,22 @@ const CourseDescription = () => {
                 {name.replace(/-/g, " ")}
               </h1>
               <div className="mt-5 text-center md:mb-10 md:text-end">
-                <Button name="Book" color="green" />
+                {selectedBooking ? (
+                  <Button name="Book" color="green" />
+                ) : (
+                  <Button name="Book" color="disabled" />
+                )}
               </div>
             </div>
             <div className="mb-2 flex flex-col  justify-between  md:flex-row">
               <img src={image} className="mx-auto w-fit max-w-xs md:mx-0" />
               <div className=" flex justify-center  rounded-lg border border-gray-200 p-2 shadow dark:border-gray-700 dark:text-gray-50 md:w-[50%]">
                 {courseDesc.courseRuns ? (
-                  <Booking timeslots={Object.entries(courseDesc?.courseRuns)} />
+                  <Booking
+                    timeslots={Object.entries(courseDesc?.courseRuns)}
+                    selectedBooking={selectedBooking}
+                    setSelectedBooking={setSelectedBooking}
+                  />
                 ) : (
                   ""
                 )}
@@ -82,7 +91,7 @@ const CourseDescription = () => {
               <h5 className="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900  dark:text-white md:text-start ">
                 Course Content
               </h5>
-              <p className="text-center text-lg font-light leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
+              <p className="text-center text-lg font-normal leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
                 {courseDesc.content}
               </p>
             </div>
