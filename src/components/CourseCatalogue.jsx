@@ -9,9 +9,6 @@ const CourseCatalogue = ({ user }) => {
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
   const handleFetchClassData = async (codeRes) => {
     await axios
       //configured api route to localhost:5006 for mac
@@ -26,9 +23,9 @@ const CourseCatalogue = ({ user }) => {
   useEffect(() => {
     handleFetchClassData();
   }, []);
-  useEffect(() => {
-    console.log("🚀 courseData:", courseData);
-  }, [courseData]);
+  // useEffect(() => {
+  //   console.log("🚀 courseData:", courseData);
+  // }, [courseData]);
 
   return (
     <section className="mt-2  w-full rounded-lg border  border-gray-200 bg-gray-50 py-5 shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">

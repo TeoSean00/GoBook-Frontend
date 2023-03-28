@@ -7,7 +7,6 @@ import {
   HiOutlineClock,
 } from "react-icons/hi2";
 const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
-  console.log(courseDesc);
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div

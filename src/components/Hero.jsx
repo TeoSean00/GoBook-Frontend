@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 
 const Hero = () => {
@@ -32,7 +33,9 @@ const Hero = () => {
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >
-                <Button name="Start Booking" color={"blue"} />
+                <Link to="/courses">
+                  <Button name="Start Booking" color={"blue"} />
+                </Link>
                 <Button name="Write a review" color={"gray"} />
               </div>
             </div>

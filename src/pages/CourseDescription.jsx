@@ -29,9 +29,9 @@ const CourseDescription = () => {
   useEffect(() => {
     handleFetchCourseDescription();
   }, []);
-  useEffect(() => {
-    console.log("🚀 selectedBooking:", selectedBooking);
-  }, [selectedBooking]);
+  // useEffect(() => {
+  //   console.log("🚀 selectedBooking:", selectedBooking);
+  // }, [selectedBooking]);
   return (
     <Layout user={state}>
       <section

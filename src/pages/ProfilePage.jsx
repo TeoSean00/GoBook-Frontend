@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Layout from "../components/Layout";
 import CourseCatalogue from "../components/CourseCatalogue";
 import CourseCardLayout from "../components/CourseCardLayout";
+
 import {
   SiTailwindcss,
   SiAdobephotoshop,
@@ -17,13 +18,9 @@ function ProfilePage() {
   const location = useLocation();
   const state = location.state;
 
-  const homePageRedirect = () => {
-    console.log("Redirecting to Home Page now");
-  };
-
   return (
     <Layout user={state}>
-      <div className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-10 shadow dark:border-gray-700 dark:bg-gray-800">
+      <div className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-2  shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
         <div className="flex  flex-col items-center pb-10">
           <img className="mb-3 h-24 w-24 rounded-full" src={state.picture} />
           <h5 className=" pb-1 text-center text-3xl font-bold capitalize dark:text-gray-50">
@@ -33,7 +30,9 @@ function ProfilePage() {
             {state.email}
           </span>
           <div className="mt-4 flex space-x-3 md:mt-6">
-            <Button name="Make Booking" color="blue" />
+            <Link to="/courses">
+              <Button name="Make Booking" color="blue" />
+            </Link>
           </div>
           <div className=" pt-10">
             <h5 className="pb-5 text-center text-xl font-bold dark:text-gray-300">
