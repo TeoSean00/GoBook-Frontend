@@ -30,7 +30,7 @@ function ProfilePage() {
             {state.email}
           </span>
           <div className="mt-4 flex space-x-3 md:mt-6">
-            <Link to="/courses">
+            <Link to="/courses" state={state}>
               <Button name="Make Booking" color="blue" />
             </Link>
           </div>
@@ -79,8 +79,9 @@ function ProfilePage() {
             <h5 className="pb-5 text-center text-xl font-bold  dark:text-gray-300">
               Registered Classes
             </h5>
-            {/* TODO:  this should be courses that user has taken in the past */}
+            {/* TODO: this should be courses that user has taken in the past */}
             <CourseCatalogue />
+            {/* TODO: my reviews */}
           </div>
         </div>
       </div>
