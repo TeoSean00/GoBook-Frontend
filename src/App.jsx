@@ -50,7 +50,7 @@ function App() {
     setUser(null);
     localStorage.clear();
   };
-  
+
   return (
     <React.StrictMode>
       <Toaster position="bottom-right" reverseOrder={false} />
