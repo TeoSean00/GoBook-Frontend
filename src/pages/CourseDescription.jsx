@@ -6,13 +6,15 @@ import image from "../assets/courseImage.svg";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Booking from "../components/Booking";
 import Button from "../components/Button";
+import BookingForm from "../components/BookingForm";
+
 const CourseDescription = () => {
   const state = useLocation().state;
   const { name, id } = useParams();
   const [courseDesc, setCourseDesc] = useState();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [selectedBooking, setSelectedBooking] = useState();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
       .get(`http://localhost:5006/class/${id}`)
@@ -44,7 +46,11 @@ const CourseDescription = () => {
               </h1>
               <div className="mt-5 text-center md:mb-10 md:text-end">
                 {selectedBooking ? (
-                  <Button name="Book" color="green" />
+                  <Button
+                    name="Book"
+                    color="green"
+                    onClick={() => setIsModalOpen(true)}
+                  />
                 ) : (
                   <Button name="Book" color="disabled" />
                 )}
@@ -109,6 +115,15 @@ const CourseDescription = () => {
               </pre>
             </div> */}
           </div>
+        ) : (
+          ""
+        )}
+        {isModalOpen && selectedBooking && courseDesc ? (
+          <BookingForm
+            courseDesc={courseDesc}
+            setIsModalOpen={setIsModalOpen}
+            selectedBooking={selectedBooking}
+          />
         ) : (
           ""
         )}
