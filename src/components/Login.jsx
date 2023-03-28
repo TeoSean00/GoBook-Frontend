@@ -21,7 +21,7 @@ const Login = ({ handleLogin }) => {
             Our booking system website provides a seamless and hassle-free
             experience for booking your next course.
           </p>
-          <Button name="Google Sign In" onClick={handleLogin} />
+          <Button name="Google Sign In" color="blue" onClick={handleLogin} />
         </div>
       </div>
     </div>
