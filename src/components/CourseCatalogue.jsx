@@ -7,7 +7,11 @@ import Searchbar from "./Searchbar";
 const CourseCatalogue = ({ user }) => {
   const [courseData, setCourseData] = useState();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
+  const [input, setInput] = useState("");
 
+  useEffect(() => {
+    console.log(input);
+  }, [input]);
   const handleFetchClassData = async (codeRes) => {
     await axios
       //configured api route to localhost:5006 for mac
@@ -36,19 +40,26 @@ const CourseCatalogue = ({ user }) => {
         >
           Courses
         </h1>{" "}
-        <Searchbar />
+        <Searchbar input={input} setInput={setInput} />
         <div ref={parent} className="flex  flex-col items-center pb-10">
           {courseData ? (
             <CourseCardLayout>
-              {courseData.map((course) => {
-                return (
-                  <CourseCard
-                    key={course["_id"]["$oid"]}
-                    course={course}
-                    user={user}
-                  />
-                );
-              })}
+              {courseData
+                .filter((course) => {
+                  if (input === "") return course;
+                  else {
+                    return course.className.toLowerCase().includes(input);
+                  }
+                })
+                .map((course) => {
+                  return (
+                    <CourseCard
+                      key={course["_id"]["$oid"]}
+                      course={course}
+                      user={user}
+                    />
+                  );
+                })}
             </CourseCardLayout>
           ) : (
             <div className="py-12 md:pt-40 md:pb-20">
