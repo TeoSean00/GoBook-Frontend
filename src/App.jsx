@@ -5,11 +5,12 @@ import { GoogleLogin, googleLogout, useGoogleLogin } from "@react-oauth/google";
 import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
-import ProfilePage from "./pages/ProfilePage";
 import Hero from "./components/Hero";
 import BookingCard from "./components/BookingCard";
+import CourseCatalogue from "./components/CourseCatalogue";
 function App() {
   const [user, setUser] = useState(null);
+
   const handleFetch = async (codeResponse) => {
     await axios
       .get(
@@ -57,7 +58,8 @@ function App() {
         {user ? (
           <Layout user={user}>
             <Hero />
-            <br />
+            <CourseCatalogue user={user} />
+            <div className="mt-2"></div>
             <Button name="Sign Out" onClick={logOut} color="red" />
             <BookingCard />
           </Layout>

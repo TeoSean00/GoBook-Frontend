@@ -10,7 +10,7 @@ const Hero = () => {
           {/* Section header */}
           <div className="pb-12 text-center text-gray-700 md:pb-16">
             <h1
-              className="mb-4 text-5xl font-extrabold leading-tight tracking-tight dark:text-gray-200 md:text-6xl"
+              className="mb-4 text-4xl font-extrabold leading-tight tracking-tight dark:text-gray-200 md:text-6xl"
               data-aos="zoom-y-out"
             >
               Start your learning journey with{" "}
@@ -20,7 +20,7 @@ const Hero = () => {
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
-                className="mb-8 text-xl text-gray-600 dark:text-gray-400"
+                className="mb-8 text-lg text-gray-600 dark:text-gray-400 md:text-xl"
                 data-aos="zoom-y-out"
                 data-aos-delay="150"
               >
