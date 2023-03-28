@@ -21,7 +21,6 @@ const CourseDescription = () => {
       .catch((err) => {
         console.log(err);
       });
-    // setImage("https://picsum.photos/id/48/300?grayscale");
   };
 
   useEffect(() => {
@@ -29,7 +28,6 @@ const CourseDescription = () => {
   }, []);
   useEffect(() => {
     console.log("🚀 courseDesc:", courseDesc?.courseRuns);
-    // console.log(Object.entries(courseDesc.courseRuns));
   }, [courseDesc]);
   return (
     <Layout user={state}>
