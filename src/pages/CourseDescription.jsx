@@ -6,6 +6,8 @@ import image from "../assets/courseImage.svg";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Booking from "../components/Booking";
 import Button from "../components/Button";
+import BookingCard from "../components/BookingCard";
+
 const CourseDescription = () => {
   const state = useLocation().state;
   const { name, id } = useParams();
@@ -28,7 +30,7 @@ const CourseDescription = () => {
     handleFetchCourseDescription();
   }, []);
   useEffect(() => {
-    console.log("🚀 courseDesc:", courseDesc?.courseRuns);
+    console.log("🚀 courseDesc:", courseDesc);
     // console.log(Object.entries(courseDesc.courseRuns));
   }, [courseDesc]);
   return (
@@ -44,7 +46,7 @@ const CourseDescription = () => {
                 {name.replace(/-/g, " ")}
               </h1>
               <div className="mt-5 text-center md:mb-10 md:text-end">
-                <Button name="Book" color="green" />
+                <BookingCard course={courseDesc}/>
               </div>
             </div>
             <div className="mb-2 flex flex-col  justify-between  md:flex-row">
