@@ -57,11 +57,10 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
-            <Hero />
+            <Hero user={user} />
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
             <Button name="Sign Out" onClick={logOut} color="red" />
-            
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />

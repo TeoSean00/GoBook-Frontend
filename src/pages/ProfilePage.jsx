@@ -2,7 +2,9 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
+import CourseCatalogue from "../components/CourseCatalogue";
 import CourseCardLayout from "../components/CourseCardLayout";
+
 import {
   SiTailwindcss,
   SiAdobephotoshop,
@@ -12,21 +14,13 @@ import {
   SiTypescript,
   SiPrisma,
 } from "react-icons/si";
-import CourseCard from "../components/CourseCard";
-
 function ProfilePage() {
   const location = useLocation();
   const state = location.state;
-  console.log("passed data is:", state);
-  console.log(state.picture);
-
-  const homePageRedirect = () => {
-    console.log("Redirecting to Home Page now");
-  };
 
   return (
     <Layout user={state}>
-      <div className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-10 shadow dark:border-gray-700 dark:bg-gray-800">
+      <div className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-2  shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
         <div className="flex  flex-col items-center pb-10">
           <img className="mb-3 h-24 w-24 rounded-full" src={state.picture} />
           <h5 className=" pb-1 text-center text-3xl font-bold capitalize dark:text-gray-50">
@@ -36,7 +30,9 @@ function ProfilePage() {
             {state.email}
           </span>
           <div className="mt-4 flex space-x-3 md:mt-6">
-            <Button name="Make Booking" color="blue" />
+            <Link to="/courses" state={state}>
+              <Button name="Make Booking" color="blue" />
+            </Link>
           </div>
           <div className=" pt-10">
             <h5 className="pb-5 text-center text-xl font-bold dark:text-gray-300">
@@ -83,11 +79,9 @@ function ProfilePage() {
             <h5 className="pb-5 text-center text-xl font-bold  dark:text-gray-300">
               Registered Classes
             </h5>
-            <CourseCardLayout>
-              {courses.map((course, ind) => {
-                return <CourseCard key={ind} course={course} />;
-              })}
-            </CourseCardLayout>
+            {/* TODO: this should be courses that user has taken in the past */}
+            <CourseCatalogue />
+            {/* TODO: my reviews */}
           </div>
         </div>
       </div>
@@ -98,29 +92,3 @@ function ProfilePage() {
 export default ProfilePage;
 
 //query from backend (each object should have another keyvalue pair for the route to its indiv page)
-const courses = [
-  {
-    className: "Fullstack Web Development",
-    objective:
-      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-    fees: 1430,
-  },
-  {
-    className: "UI/UX Design and Prototyping",
-    objective:
-      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-    fees: 1430,
-  },
-  {
-    className: "Agile Software Development with Scrum",
-    objective:
-      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-    fees: 1430,
-  },
-  {
-    className: "Data Science and Machine Learning with Python",
-    objective:
-      " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-    fees: 1430,
-  },
-];

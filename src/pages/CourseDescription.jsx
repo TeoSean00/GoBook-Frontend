@@ -7,13 +7,15 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Booking from "../components/Booking";
 import Button from "../components/Button";
 import BookingCard from "../components/BookingCard";
+import BookingForm from "../components/BookingForm";
 
 const CourseDescription = () => {
   const state = useLocation().state;
   const { name, id } = useParams();
   const [courseDesc, setCourseDesc] = useState();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
-
+  const [selectedBooking, setSelectedBooking] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
       .get(`http://localhost:5006/class/${id}`)
@@ -23,16 +25,21 @@ const CourseDescription = () => {
       .catch((err) => {
         console.log(err);
       });
-    // setImage("https://picsum.photos/id/48/300?grayscale");
   };
 
   useEffect(() => {
     handleFetchCourseDescription();
   }, []);
+  
   useEffect(() => {
     console.log("🚀 courseDesc:", courseDesc);
     // console.log(Object.entries(courseDesc.courseRuns));
   }, [courseDesc]);
+  
+  // useEffect(() => {
+  //   console.log("🚀 selectedBooking:", selectedBooking);
+  // }, [selectedBooking]);
+
   return (
     <Layout user={state}>
       <section
@@ -47,13 +54,26 @@ const CourseDescription = () => {
               </h1>
               <div className="mt-5 text-center md:mb-10 md:text-end">
                 <BookingCard course={courseDesc}/>
+                {selectedBooking ? (
+                  <Button
+                    name="Book"
+                    color="green"
+                    onClick={() => setIsModalOpen(true)}
+                  />
+                ) : (
+                  <Button name="Book" color="disabled" />
+                )}
               </div>
             </div>
             <div className="mb-2 flex flex-col  justify-between  md:flex-row">
               <img src={image} className="mx-auto w-fit max-w-xs md:mx-0" />
               <div className=" flex justify-center  rounded-lg border border-gray-200 p-2 shadow dark:border-gray-700 dark:text-gray-50 md:w-[50%]">
                 {courseDesc.courseRuns ? (
-                  <Booking timeslots={Object.entries(courseDesc?.courseRuns)} />
+                  <Booking
+                    timeslots={Object.entries(courseDesc?.courseRuns)}
+                    selectedBooking={selectedBooking}
+                    setSelectedBooking={setSelectedBooking}
+                  />
                 ) : (
                   ""
                 )}
@@ -86,7 +106,7 @@ const CourseDescription = () => {
               <h5 className="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900  dark:text-white md:text-start ">
                 Course Content
               </h5>
-              <p className="text-center text-lg font-light leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
+              <p className="text-center text-lg font-normal leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
                 {courseDesc.content}
               </p>
             </div>
@@ -104,6 +124,15 @@ const CourseDescription = () => {
               </pre>
             </div> */}
           </div>
+        ) : (
+          ""
+        )}
+        {isModalOpen && selectedBooking && courseDesc ? (
+          <BookingForm
+            courseDesc={courseDesc}
+            setIsModalOpen={setIsModalOpen}
+            selectedBooking={selectedBooking}
+          />
         ) : (
           ""
         )}
