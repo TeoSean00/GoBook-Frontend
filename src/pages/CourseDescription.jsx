@@ -6,6 +6,7 @@ import image from "../assets/courseImage.svg";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Booking from "../components/Booking";
 import Button from "../components/Button";
+import BookingCard from "../components/BookingCard";
 import BookingForm from "../components/BookingForm";
 
 const CourseDescription = () => {
@@ -29,9 +30,16 @@ const CourseDescription = () => {
   useEffect(() => {
     handleFetchCourseDescription();
   }, []);
+  
+  useEffect(() => {
+    console.log("🚀 courseDesc:", courseDesc);
+    // console.log(Object.entries(courseDesc.courseRuns));
+  }, [courseDesc]);
+  
   // useEffect(() => {
   //   console.log("🚀 selectedBooking:", selectedBooking);
   // }, [selectedBooking]);
+
   return (
     <Layout user={state}>
       <section
@@ -45,6 +53,7 @@ const CourseDescription = () => {
                 {name.replace(/-/g, " ")}
               </h1>
               <div className="mt-5 text-center md:mb-10 md:text-end">
+                <BookingCard course={courseDesc}/>
                 {selectedBooking ? (
                   <Button
                     name="Book"
