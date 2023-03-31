@@ -35,6 +35,10 @@ function App() {
     onSuccess: (codeResponse) => handleFetch(codeResponse),
     onError: (error) => console.log("Login Failed", error),
   });
+
+  useEffect(() => {
+    console.log("🚀 ~ file: App.jsx:42 ~ App ~ user:", user);
+  }, [user]);
   // note: good practice to not fetch API from useEffect hook but not important
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
