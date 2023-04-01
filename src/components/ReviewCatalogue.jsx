@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import ReviewCard from "./ReviewCard";
 const currDate = new Date();
 
@@ -19,7 +18,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
       userId: "104803140206997669096",
       classId: "642267eccf6cd4f07576835b",
       date: currDate,
-      rating: 3,
+      rating: 5,
       reviewContent:
         "This is NOT an all-inclusive template. We expect you to bring your own libraries that solve the needs of YOUR application. While we don’t want to prescribe solutions to more specific problems like state management and deployment, we do have some recommendations listed here.",
     },
@@ -37,7 +36,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
       userId: "104803140206997669096",
       classId: "642267eccf6cd4f07576835b",
       date: currDate,
-      rating: 3,
+      rating: 4,
       reviewContent:
         "After countless projects and many years on this tech, we have lots of opinions and insights. We’ve done our best to encode them into this CLI.",
     },
@@ -52,9 +51,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
   //       console.log(err);
   //     });
   // };
-  // useEffect(() => {
-  //   handleFetchClassReviews();
-  // }, []);
+
   return (
     <div className="grid items-center gap-2 sm:grid-cols-2 lg:grid-cols-3">
       {reviews.map((review) => {

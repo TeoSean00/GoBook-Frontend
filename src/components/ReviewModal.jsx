@@ -1,18 +1,19 @@
 import React from "react";
 import Button from "./Button";
+import { HiOutlineStar } from "react-icons/hi2";
 
-const ReviewModal = ({ setIsReviewOpen, reviewContent }) => {
+const ReviewModal = ({ setIsReviewOpen, review }) => {
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
-        className="fixed inset-0 h-full w-full bg-black opacity-40"
+        className="fixed inset-0 h-full w-full bg-black opacity-60 "
         onClick={() => setIsReviewOpen(false)}
       ></div>
       <div className="flex min-h-screen items-center px-4 py-8">
         <div className="relative mx-auto w-full max-w-md rounded-md bg-gray-50  p-8 text-gray-900 shadow-lg  dark:bg-gray-800 dark:text-white">
           <div>
             <div className="mt-2 text-center text-gray-800">
-              <div className="mt-2 flex items-center gap-x-2 rounded-md bg-blue-50 p-1.5 dark:bg-blue-100">
+              <div className="mt-2 flex items-center gap-x-2 rounded-md bg-slate-100 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -29,13 +30,18 @@ const ReviewModal = ({ setIsReviewOpen, reviewContent }) => {
                 </svg>
 
                 <div>
-                  <span className="mt-0.5 block text-sm font-medium text-blue-600">
+                  <span className="mt-0.5 block text-sm font-medium text-blue-600 dark:text-blue-300">
                     Anonymous User
                   </span>
                 </div>
               </div>
-              <p className=" py-5 text-start text-sm leading-6 tracking-wider text-gray-800  dark:text-gray-200">
-                {reviewContent}
+              <div className=" flex items-center  py-2  text-yellow-300">
+                {Array.from({ length: review.rating }, (_, i) => (
+                  <HiOutlineStar fill="currentColor" className="w-4" key={i} />
+                ))}
+              </div>
+              <p className=" pb-5 text-start text-sm leading-6 tracking-wider text-gray-800  dark:text-gray-200">
+                {review.reviewContent}
               </p>
             </div>
           </div>

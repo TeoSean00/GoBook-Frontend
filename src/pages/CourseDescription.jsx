@@ -18,7 +18,7 @@ const CourseDescription = () => {
   const [selectedBooking, setSelectedBooking] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
-  const [reviewContent, setReviewContent] = useState("");
+  const [reviewContent, setReviewContent] = useState(null);
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
       .get(`http://localhost:5006/class/${id}`)
@@ -33,9 +33,9 @@ const CourseDescription = () => {
   useEffect(() => {
     handleFetchCourseDescription();
   }, []);
-  // useEffect(() => {
-  //   console.log("🚀 selectedBooking:", selectedBooking);
-  // }, [selectedBooking]);
+  useEffect(() => {
+    console.log("🚀 reviewContent:", reviewContent);
+  }, [reviewContent]);
   return (
     <Layout user={state}>
       <section
@@ -151,10 +151,10 @@ const CourseDescription = () => {
         ) : (
           ""
         )}
-        {isReviewOpen ? (
+        {isReviewOpen && reviewContent ? (
           <ReviewModal
             setIsReviewOpen={setIsReviewOpen}
-            reviewContent={reviewContent}
+            review={reviewContent}
           />
         ) : (
           ""

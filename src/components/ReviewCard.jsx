@@ -1,12 +1,12 @@
 import React from "react";
-import { HiLightBulb } from "react-icons/hi2";
+import { HiOutlineStar } from "react-icons/hi2";
 
 const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
   return (
     <div>
       <div
         onClick={() => {
-          setReviewContent(review.reviewContent);
+          setReviewContent(review);
           setIsReviewOpen(true);
         }}
         className="block  cursor-alias rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-800 dark:hover:bg-slate-700 sm:h-full sm:p-3 md:p-6"
@@ -26,17 +26,19 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
         </div>
         <figure>
           <blockquote>
-            <div className=" flex items-center p-4  text-yellow-500">
-              <HiLightBulb fill="currentColor" />
+            <div className=" flex items-center px-4 py-2  text-yellow-300">
+              {Array.from({ length: review.rating }, (_, i) => (
+                <HiOutlineStar fill="currentColor" className="w-4" key={i} />
+              ))}
             </div>
             <p className="h-[85px] px-4 py-1 text-lg font-semibold text-gray-800 line-clamp-3 dark:text-gray-200 md:h-36 md:line-clamp-5">
               {review.reviewContent}
             </p>
           </blockquote>
-          <span className="block py-2 text-end  text-sm font-light text-gray-800 dark:text-gray-400 md:py-5">
+          <span className="block p-2  text-end  text-xs font-normal tracking-wide text-gray-500 dark:text-gray-400 md:py-5">
             {review.date.toLocaleDateString()}
           </span>
-          <div className="mt-2 flex items-center gap-x-2 rounded-md bg-blue-100 p-1.5 text-gray-800 ">
+          <div className=" mx-2 mt-2 mb-4 flex items-center  gap-x-2 rounded-md bg-slate-100 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -53,7 +55,7 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
             </svg>
 
             <div>
-              <span className="mt-0.5 block text-sm font-medium text-blue-600">
+              <span className="mt-0.5 block text-sm font-medium text-blue-600 dark:text-blue-300">
                 Anonymous User
               </span>
             </div>
