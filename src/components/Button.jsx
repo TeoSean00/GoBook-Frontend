@@ -7,6 +7,7 @@ const Button = ({ name, onClick, color }) => {
     gray: "bg-gray-700 hover:bg-gray-800 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800",
     green:
       "bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800",
+    disabled: "bg-gray-400 cursor-not-allowed",
   };
   return (
     <button

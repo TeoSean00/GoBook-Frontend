@@ -6,7 +6,6 @@ import Layout from "./components/Layout";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
 import Hero from "./components/Hero";
-import BookingCard from "./components/BookingCard";
 import CourseCatalogue from "./components/CourseCatalogue";
 function App() {
   const [user, setUser] = useState(null);
@@ -57,11 +56,10 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
-            <Hero />
+            <Hero user={user} />
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
             <Button name="Sign Out" onClick={logOut} color="red" />
-            <BookingCard />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
