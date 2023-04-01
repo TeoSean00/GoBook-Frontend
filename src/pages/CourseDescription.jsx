@@ -7,6 +7,8 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Booking from "../components/Booking";
 import Button from "../components/Button";
 import BookingForm from "../components/BookingForm";
+import ReviewCatalogue from "../components/ReviewCatalogue";
+import ReviewModal from "../components/ReviewModal";
 
 const CourseDescription = () => {
   const state = useLocation().state;
@@ -15,6 +17,8 @@ const CourseDescription = () => {
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [selectedBooking, setSelectedBooking] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [reviewContent, setReviewContent] = useState(null);
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
       .get(`http://localhost:5006/class/${id}`)
@@ -29,9 +33,9 @@ const CourseDescription = () => {
   useEffect(() => {
     handleFetchCourseDescription();
   }, []);
-  // useEffect(() => {
-  //   console.log("🚀 selectedBooking:", selectedBooking);
-  // }, [selectedBooking]);
+  useEffect(() => {
+    console.log("🚀 reviewContent:", reviewContent);
+  }, [reviewContent]);
   return (
     <Layout user={state}>
       <section
@@ -77,20 +81,36 @@ const CourseDescription = () => {
                   ${courseDesc.fees}
                 </pre>
               </div>
-              <div className="w-full text-center text-2xl font-semibold">
+              <div className="flex w-full flex-col items-center text-center text-2xl font-semibold">
                 Categories
-                <div className="col-span-2 grid justify-center gap-y-2 pt-2 sm:grid-flow-col sm:gap-x-2">
-                  {courseDesc.category.map((cat, ind) => {
-                    return (
-                      <button
-                        key={ind}
-                        className=" rounded-lg bg-blue-50 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200"
-                      >
-                        {cat}
-                      </button>
-                    );
-                  })}
-                </div>
+                {courseDesc.category.length === 4 ? (
+                  <div className="col-span-2 grid max-w-xs grid-cols-2  justify-center gap-2  pt-2 lg:max-w-md lg:grid-flow-col lg:grid-cols-4">
+                    {/* <div className="col-span-2 grid justify-center gap-y-2 pt-2 sm:grid-flow-col sm:gap-x-2"> */}
+                    {courseDesc.category.map((cat, ind) => {
+                      return (
+                        <button
+                          key={ind}
+                          className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600"
+                        >
+                          {cat}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="col-span-2 grid justify-center gap-y-2 pt-2 sm:grid-flow-col sm:gap-x-2">
+                    {courseDesc.category.map((cat, ind) => {
+                      return (
+                        <button
+                          key={ind}
+                          className=" rounded-lg bg-blue-50 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200"
+                        >
+                          {cat}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
             <div className="mb-2 justify-between rounded-lg border border-gray-200 p-5 shadow dark:border-gray-700">
@@ -101,13 +121,17 @@ const CourseDescription = () => {
                 {courseDesc.content}
               </p>
             </div>
-            <div className="mb-2 justify-between rounded-lg border border-gray-200 p-5 shadow dark:border-gray-700">
+            <div className="mb-2 justify-between rounded-lg border border-gray-200 px-2 pt-5 pb-2 shadow dark:border-gray-700 md:p-5">
               <h5 className="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900  dark:text-white md:text-start ">
-                Recommended Courses{" "}
+                Reviews{" "}
               </h5>
-              <p className="text-center text-lg font-light leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
-                *Insert Recommended Courses component*
-              </p>
+              <div className=" text-lg font-light leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
+                <ReviewCatalogue
+                  setIsReviewOpen={setIsReviewOpen}
+                  classId={id}
+                  setReviewContent={setReviewContent}
+                />
+              </div>
             </div>
             {/* <div className="dark:text-gray-50">
               <pre className="overflow-hidden">
@@ -123,6 +147,14 @@ const CourseDescription = () => {
             courseDesc={courseDesc}
             setIsModalOpen={setIsModalOpen}
             selectedBooking={selectedBooking}
+          />
+        ) : (
+          ""
+        )}
+        {isReviewOpen && reviewContent ? (
+          <ReviewModal
+            setIsReviewOpen={setIsReviewOpen}
+            review={reviewContent}
           />
         ) : (
           ""
