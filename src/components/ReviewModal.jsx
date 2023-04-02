@@ -10,8 +10,8 @@ const ReviewModal = ({ setIsReviewOpen, review }) => {
         onClick={() => setIsReviewOpen(false)}
       ></div>
       <div className="flex min-h-screen items-center px-4 py-8">
-        <div className="relative mx-auto w-full max-w-md rounded-md bg-gray-50  p-8 text-gray-900 shadow-lg  dark:bg-gray-800 dark:text-white">
-          <div>
+        <div className="relative mx-auto w-full max-w-md rounded-md bg-gray-50 px-4 pt-8 pb-4 text-gray-900 shadow-lg  dark:bg-gray-800 dark:text-white">
+          <div className="rounded-lg border border-gray-200 p-3 shadow dark:border-gray-700 dark:shadow-gray-700">
             <div className="mt-2 text-center text-gray-800">
               <div className="mt-2 flex items-center gap-x-2 rounded-md bg-slate-100 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300">
                 <svg
@@ -41,11 +41,11 @@ const ReviewModal = ({ setIsReviewOpen, review }) => {
                 ))}
               </div>
               <p className=" pb-5 text-start text-sm leading-6 tracking-wider text-gray-800  dark:text-gray-200">
-                {review.reviewContent}
+                " {review.reviewContent} "
               </p>
             </div>
           </div>
-          <div className=" flex justify-end">
+          <div className=" flex justify-end pt-4">
             <Button
               name="Back"
               color="gray"

@@ -9,7 +9,7 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
           setReviewContent(review);
           setIsReviewOpen(true);
         }}
-        className="block  cursor-alias rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-800 dark:hover:bg-slate-700 sm:h-full sm:p-3 md:p-6"
+        className="block  cursor-alias rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-800 dark:shadow-gray-700 dark:hover:bg-slate-900 sm:h-full sm:p-3 md:p-6"
       >
         <div className="p-2">
           <svg
