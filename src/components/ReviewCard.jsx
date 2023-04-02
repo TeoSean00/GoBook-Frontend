@@ -36,9 +36,10 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
             </p>
           </blockquote>
           <span className="block p-2  text-end  text-xs font-normal tracking-wide text-gray-500 dark:text-gray-400 md:py-5">
-            {review.date.toLocaleDateString()}
+            {review.date}
+            {/* {review.date.toLocaleDateString()} */}
           </span>
-          <div className=" mx-2 mt-2 mb-4 flex items-center  gap-x-2 rounded-md bg-slate-100 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300 ">
+          <div className=" mx-2 mt-2 mb-4 flex items-center  gap-x-2 rounded-md bg-blue-50 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
