@@ -18,9 +18,6 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
         console.log(err);
       });
   };
-  // useEffect(() => {
-  //   console.log(reviews == [], reviews);
-  // }, [reviews]);
 
   useEffect(() => {
     handleFetchClassReviews();
