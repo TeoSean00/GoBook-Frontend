@@ -31,7 +31,7 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
                 <HiOutlineStar fill="currentColor" className="w-4" key={i} />
               ))}
             </div>
-            <p className="h-[85px] px-4 py-1 text-lg font-semibold text-gray-800 line-clamp-3 dark:text-gray-200 md:h-36 md:line-clamp-5">
+            <p className="h-[80px] px-4 py-1 text-lg font-semibold leading-6 text-gray-800 line-clamp-3 dark:text-gray-200 md:h-36 md:line-clamp-6">
               {review.reviewContent}
             </p>
           </blockquote>
