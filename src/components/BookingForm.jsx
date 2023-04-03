@@ -38,7 +38,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <HiOutlineCurrencyDollar />
                       <pre>Booking Price</pre>
                     </div>
-                    <div className=" rounded-lg bg-blue-50 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
+                    <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
                       ${courseDesc.fees}
                     </div>
                   </div>
@@ -47,7 +47,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <HiOutlineCalendarDays />
                       <pre>Booking Date</pre>
                     </div>
-                    <div className=" rounded-lg bg-blue-50 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
+                    <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
                       {selectedBooking.date}
                     </div>
                   </div>
@@ -56,7 +56,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <HiOutlineClock />
                       <pre>Booking Timeslot</pre>
                     </div>
-                    <div className=" rounded-lg bg-blue-50 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
+                    <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
                       {selectedBooking.timeslot}
                     </div>
                   </div>
@@ -65,7 +65,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <HiOutlineUserGroup />
                       <pre>Remaining Slots</pre>
                     </div>
-                    <div className=" rounded-lg bg-blue-50 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
+                    <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
                       {selectedBooking.availableSlots} left
                     </div>
                   </div>
