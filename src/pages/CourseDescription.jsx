@@ -117,7 +117,7 @@ const CourseDescription = () => {
               <h5 className="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900  dark:text-white md:text-start ">
                 Course Content
               </h5>
-              <p className="text-center text-lg font-normal leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
+              <p className="text-center text-sm font-normal leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
                 {courseDesc.content}
               </p>
             </div>
