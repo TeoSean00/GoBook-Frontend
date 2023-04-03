@@ -31,14 +31,15 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
                 <HiOutlineStar fill="currentColor" className="w-4" key={i} />
               ))}
             </div>
-            <p className="h-[85px] px-4 py-1 text-lg font-semibold text-gray-800 line-clamp-3 dark:text-gray-200 md:h-36 md:line-clamp-5">
+            <p className="h-24 px-4 py-1 text-lg font-semibold leading-6 text-gray-700 line-clamp-3 dark:text-gray-400 md:h-36 md:line-clamp-6">
               {review.reviewContent}
             </p>
           </blockquote>
           <span className="block p-2  text-end  text-xs font-normal tracking-wide text-gray-500 dark:text-gray-400 md:py-5">
-            {review.date.toLocaleDateString()}
+            {review.date}
+            {/* {review.date.toLocaleDateString()} */}
           </span>
-          <div className=" mx-2 mt-2 mb-4 flex items-center  gap-x-2 rounded-md bg-slate-100 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300 ">
+          <div className=" mx-2 mt-2 mb-4 flex items-center  gap-x-2 rounded-md bg-blue-50 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
