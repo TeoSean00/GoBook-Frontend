@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
 const Searchbar = ({ input, setInput }) => {
-  //   useEffect(() => {
-  //     console.log(input);
-  //   }, [input]);
   return (
     <div className="relative my-5 mx-auto w-[75%] sm:w-[50%]">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">

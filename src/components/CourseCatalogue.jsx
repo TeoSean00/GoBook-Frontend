@@ -23,10 +23,6 @@ const CourseCatalogue = ({ user }) => {
   useEffect(() => {
     handleFetchClassData();
   }, []);
-  // useEffect(() => {
-  //   console.log("🚀 courseData:", courseData);
-  // }, [courseData]);
-
   return (
     <section className="mt-2  w-full rounded-lg border  border-gray-200 bg-gray-50 py-5 shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
