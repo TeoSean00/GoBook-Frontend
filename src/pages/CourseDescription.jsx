@@ -85,7 +85,6 @@ const CourseDescription = () => {
                 Categories
                 {courseDesc.category.length === 4 ? (
                   <div className="col-span-2 grid max-w-xs grid-cols-2  justify-center gap-2  pt-2 lg:max-w-md lg:grid-flow-col lg:grid-cols-4">
-                    {/* <div className="col-span-2 grid justify-center gap-y-2 pt-2 sm:grid-flow-col sm:gap-x-2"> */}
                     {courseDesc.category.map((cat, ind) => {
                       return (
                         <button
@@ -133,11 +132,6 @@ const CourseDescription = () => {
                 />
               </div>
             </div>
-            {/* <div className="dark:text-gray-50">
-              <pre className="overflow-hidden">
-                {JSON.stringify(courseDesc, null, 2)}
-              </pre>
-            </div> */}
           </div>
         ) : (
           ""

@@ -74,15 +74,11 @@ function ProfilePage() {
               </span>
             </div>
           </div>
-          {/* Registered Classes */}
-          <div className=" pt-10">
-            <h5 className="pb-5 text-center text-xl font-bold  dark:text-gray-300">
-              Registered Classes
-            </h5>
-            {/* TODO: this should be courses that user has taken in the past */}
-            <CourseCatalogue />
-            {/* TODO: my reviews */}
-          </div>
+
+          {/* TODO: this should be courses that user has taken in the past */}
+
+          {/* <CourseCatalogue /> */}
+          {/* TODO: my reviews */}
         </div>
       </div>
     </Layout>

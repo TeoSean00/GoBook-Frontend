@@ -11,7 +11,7 @@ const Button = ({ name, onClick, color }) => {
   };
   return (
     <button
-      className={`w-fit rounded-lg px-5 py-2.5 text-sm font-medium text-gray-50 duration-150  hover:cursor-alias focus:outline-none focus:ring-4 ${colorVariants[color]}`}
+      className={`w-fit rounded-lg px-5 py-2.5 text-sm font-medium text-gray-50 duration-150  focus:outline-none focus:ring-4 ${colorVariants[color]}`}
       onClick={onClick}
     >
       {name}
