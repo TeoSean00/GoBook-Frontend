@@ -14,7 +14,7 @@ const RecommendationCatalogue = ({ user }) => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
-    const socket = io("http://localhost:5010");
+    const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
       console.log("WebSocket connection opened");
