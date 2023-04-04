@@ -27,6 +27,10 @@ const RecommendationCatalogue = ({ user }) => {
 
     socket.on("message", (data) => {
       console.log("Received message:", data);
+      if (data.userId == "user3") {
+        setRecommendation(data);
+      }
+      console.log("recommendation is", recommendation);
       // Update the React state or UI based on the message data
     });
 
