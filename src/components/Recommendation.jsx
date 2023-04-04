@@ -12,6 +12,7 @@ const RecommendationCatalogue = ({ user }) => {
   const [courseData, setCourseData] = useState();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
+  const [recommendation, setRecommendation] = useState();
 
   useEffect(() => {
     const socket = io("http://localhost:5011");
