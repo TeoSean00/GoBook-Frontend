@@ -6,7 +6,7 @@ import Courses from "../pages/Courses";
 import PaymentPage from "../pages/PaymentPage";
 import ProfilePage from "../pages/ProfilePage";
 import CourseDescription from "../pages/CourseDescription";
-import BookingPage from "../pages/BookingPage";
+import RecommendationCatalogue from "../components/Recommendation";
 
 const AppRoutes = () => (
   <Routes>
@@ -17,6 +17,7 @@ const AppRoutes = () => (
     <Route exact path="/payment" element={<PaymentPage />} />
     <Route exact path="/booking" element={<BookingPage />} />
     <Route exact path="/courses/:name/:id" element={<CourseDescription />} />
+    <Route exact path="/recommendation" element={<RecommendationCatalogue />} />
   </Routes>
 );
 
