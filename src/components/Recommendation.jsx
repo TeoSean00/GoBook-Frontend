@@ -28,7 +28,8 @@ const RecommendationCatalogue = ({ user }) => {
 
     socket.on("message", (data) => {
       console.log("Received message:", data);
-      if (data.userId == "user3") {
+      // Hardcoded user id for now
+      if (data.userId == "112532673980137782859") {
         setRecommendation(data.recommendation);
       }
 
@@ -65,7 +66,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const getRecommendedClasses = async () => {
     await axios
-      .get("http://localhost:5001/users/getUser/" + "112532673980137782859")
+      .get(`http://localhost:5001/users/getUser/112532673980137782859`)
       .then((res) => {
         var recommended_classes = res.data.recommended_classes;
         setRecommendation(recommended_classes);
