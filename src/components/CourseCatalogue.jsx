@@ -47,7 +47,7 @@ const CourseCatalogue = ({ user }) => {
                 .map((course) => {
                   return (
                     <CourseCard
-                      key={course["_id"]["$oid"]}
+                      key={course["_id"]}
                       course={course}
                       user={user}
                     />
