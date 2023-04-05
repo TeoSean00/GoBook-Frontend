@@ -6,7 +6,7 @@ const CourseCard = ({ course, user }) => {
     <div>
       {course ? (
         <Link
-          to={`/courses/${course?.className}/${course["_id"]["$oid"]}`}
+          to={`/courses/${course?.className}/${course["_id"]}`}
           state={user}
           className="block max-w-md cursor-alias rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-800 dark:shadow-gray-700 dark:hover:bg-slate-900 sm:h-full md:p-6"
         >
