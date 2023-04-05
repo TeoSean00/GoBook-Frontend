@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import { toast } from "react-hot-toast";
 const Button = ({ name, onClick, color }) => {
   const colorVariants = {
     blue: "bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",

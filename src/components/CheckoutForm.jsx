@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+// import { Spinner } from "@stripe/ui-extension-sdk/ui";
+
 import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import toast from "react-hot-toast";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -47,7 +50,7 @@ export default function CheckoutForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    toast.loading("Processing Payment...", { duration: 6000 });
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -60,7 +63,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:5173/payment",
+        return_url: `${window.location.origin}/confirmation`,
         receipt_email: email,
         payment_method_data: {
           billing_details: { email: email },
@@ -88,15 +91,17 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
+      <PaymentElement id="payment-element" options={paymentElementOptions} />
       <LinkAuthenticationElement
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target)}
       />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
+      <button
+        className="mt-5 w-fit rounded-lg bg-green-500 px-5 py-2.5 text-sm font-medium  duration-150 hover:bg-green-400 focus:outline-none focus:ring-4"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+      >
+        <span id="button-text">{isLoading ? "Processing..." : "Pay now"}</span>
       </button>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}

@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
-import io from "socket.io-client";
+import CheckoutForm from "../components/CheckoutForm";
+import Layout from "../components/Layout";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const stripePromise = loadStripe(
   "pk_test_51MkznJJTqG9NvRuTCvhU1y4RyggSstQYI2woG0L2DQywIKMFmvYVSqyS6uwHfCsK1mdv5Nvo6KP1NzAnR0wlukX900AB3llvRf"
 );
 
 export default function PaymentPage() {
-  var [clientSecret, setClientSecret] = useState("");
-  var [selectedClass, setSelectedClass] = useState(null);
+  const [clientSecret, setClientSecret] = useState();
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
 
-  var data = {
-    userEmail: "celov54484@gpipes.com",
-    userName: "celo",
-    orderID: "4500",
-    courseName: "Data Structure Algorithms",
-    coursePrice: 2000,
-    courseDescription:
-      "A 3rd semester course at SMU, continues to develop students' understanding of object oriented programming, memory management",
-    classID: 3,
-    runID: 1,
-    userID: 10,
-  };
+  const data = useLocation().state;
 
   useEffect(() => {
     const socket = io("http://localhost:5010");
@@ -52,10 +42,13 @@ export default function PaymentPage() {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data[0]),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((data) => {
+        console.log(data);
+        setClientSecret(data.clientSecret);
+      });
 
     console.log(data);
   }
@@ -67,24 +60,30 @@ export default function PaymentPage() {
     clientSecret,
     appearance,
   };
-
+  useEffect(() => {
+    makePayment();
+  }, []);
+  useEffect(() => {
+    console.log(clientSecret);
+  }, [clientSecret]);
   return (
-    <React.StrictMode>
-      <div>
-        <button
-          type="button"
-          className="mr-2 mb-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={makePayment}
-        >
-          Select Class
-        </button>
-        {clientSecret && (
-          <Elements options={options} stripe={stripePromise}>
-            <h2>You have selected {selectedClass}</h2>
-            <CheckoutForm />
-          </Elements>
-        )}
-      </div>
-    </React.StrictMode>
+    <>
+      {data ? (
+        <Layout user={data[1]} ref={parent}>
+          <div
+            class="mx-auto mt-10 max-w-xl rounded-xl bg-blue-200 p-10"
+            ref={parent}
+          >
+            {clientSecret && (
+              <Elements options={options} stripe={stripePromise}>
+                <CheckoutForm />
+              </Elements>
+            )}
+          </div>
+        </Layout>
+      ) : (
+        ""
+      )}
+    </>
   );
 }

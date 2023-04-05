@@ -65,6 +65,7 @@ const CourseDescription = () => {
               <div className=" flex justify-center  rounded-lg border border-gray-200 p-2 shadow dark:border-gray-700 dark:text-gray-50 md:w-[50%]">
                 {courseDesc.courseRuns ? (
                   <Booking
+                    maxClassSize={courseDesc.classSize}
                     timeslots={Object.entries(courseDesc?.courseRuns)}
                     selectedBooking={selectedBooking}
                     setSelectedBooking={setSelectedBooking}
