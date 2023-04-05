@@ -34,7 +34,7 @@ const RecommendationCatalogue = ({ user }) => {
       
       // Update the React state or UI based on the message data
     });
-
+    getRecommendedClasses();
     return () => {
       socket.disconnect();
     };
@@ -55,6 +55,18 @@ const RecommendationCatalogue = ({ user }) => {
     .put(`http://localhost:5001/users/addrecc/114532673980137782859`, {recommended_classes: classes})
     .then((res) => {
       console.log("Response is " + res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  const getRecommendedClasses = async () => {
+    await axios
+    .get(`http://localhost:5001/getUser/114532673980137782859`)
+    .then((res) => {
+      var recommended_classes = res.data.recommended_classes
+      setRecommendation(recommended_classes);
     })
     .catch((err) => {
       console.log(err);
