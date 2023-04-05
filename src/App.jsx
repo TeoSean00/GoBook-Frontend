@@ -8,6 +8,7 @@ import Button from "./components/Button";
 import Hero from "./components/Hero";
 import CourseCatalogue from "./components/CourseCatalogue";
 import RecommendationCatalogue from "./components/Recommendation";
+import TestPurchase from "./components/TestPurchase";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -66,6 +67,7 @@ function App() {
             <div className="mt-2"></div>
             <RecommendationCatalogue user={user} />
             <Button name="Sign Out" onClick={logOut} color="red" />
+            <TestPurchase />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
