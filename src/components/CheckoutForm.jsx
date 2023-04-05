@@ -50,7 +50,7 @@ export default function CheckoutForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.loading("Processing Payment...");
+    toast.loading("Processing Payment...", { duration: 6000 });
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -63,7 +63,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:5173/confirmation",
+        return_url: `${window.location.origin}/confirmation`,
         receipt_email: email,
         payment_method_data: {
           billing_details: { email: email },
@@ -108,5 +108,3 @@ export default function CheckoutForm() {
     </form>
   );
 }
-
-// className={`w-fit rounded-lg px-5 py-2.5 text-sm font-medium text-gray-50 duration-150  focus:outline-none focus:ring-4 ${colorVariants[color]}`}
