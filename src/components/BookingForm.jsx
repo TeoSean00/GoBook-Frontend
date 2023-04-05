@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import Button from "./Button";
 import {
   HiOutlineCalendarDays,
@@ -7,6 +10,8 @@ import {
   HiOutlineClock,
 } from "react-icons/hi2";
 const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
+  const userDetails = useLocation().state;
+  console.log(courseDesc, selectedBooking);
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
@@ -48,7 +53,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <pre>Booking Date</pre>
                     </div>
                     <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
-                      {selectedBooking.date}
+                      {selectedBooking[1].date}
                     </div>
                   </div>
                   <div className="flex items-center justify-between ">
@@ -57,7 +62,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <pre>Booking Timeslot</pre>
                     </div>
                     <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
-                      {selectedBooking.timeslot}
+                      {selectedBooking[1].timeslot}
                     </div>
                   </div>
                   <div className="flex items-center justify-between ">
@@ -66,7 +71,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                       <pre>Remaining Slots</pre>
                     </div>
                     <div className=" rounded-lg bg-blue-100 px-3 py-0.5 text-sm text-blue-600 duration-150 hover:bg-blue-100 active:bg-blue-200">
-                      {selectedBooking.availableSlots} left
+                      {selectedBooking[1].availableSlots} left
                     </div>
                   </div>
                 </div>
@@ -74,11 +79,26 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
             </div>
           </div>
           <div className="mt-5 flex items-center justify-end gap-3 px-10 py-4">
-            <Button
-              name="Proceed to Payment"
-              color="green"
-              onClick={() => setIsModalOpen(false)}
-            />
+            <Link
+              to="/payment"
+              state={{
+                userEmail: userDetails.email,
+                userName: userDetails.given_name,
+                orderID: uuid(),
+                courseName: courseDesc.className.replace(/-/g, " "),
+                coursePrice: courseDesc.fees,
+                courseDescription: courseDesc.content,
+                classID: Number(courseDesc["_id"]),
+                runID: Number(selectedBooking[0]),
+                userID: userDetails.id,
+              }}
+            >
+              <Button
+                name="Proceed to Payment"
+                color="green"
+                // onClick={() => setIsModalOpen(false)}
+              />
+            </Link>
             <Button
               name="Cancel"
               color="red"

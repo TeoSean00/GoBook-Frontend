@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
+import CheckoutForm from "../components/CheckoutForm";
 
 const stripePromise = loadStripe(
   "pk_test_51MkznJJTqG9NvRuTCvhU1y4RyggSstQYI2woG0L2DQywIKMFmvYVSqyS6uwHfCsK1mdv5Nvo6KP1NzAnR0wlukX900AB3llvRf"
@@ -10,18 +10,31 @@ const stripePromise = loadStripe(
 
 export default function PaymentPage() {
   var [clientSecret, setClientSecret] = useState("");
+  // const data = useLocation().state;
 
+  // var data = {
+  //   classID: 3,
+  //   userEmail: "celov54484@gpipes.com",
+  //   userName: "celo",
+  //   orderID: "4500",
+  //   courseName: "Data Structure Algorithms",
+  //   coursePrice: 2000,
+  //   courseDescription:
+  //     "A 3rd semester course at SMU, continues to develop students' understanding of object oriented programming, memory management",
+  //   runID: 1,
+  //   userID: 10,
+  // };
   var data = {
-    userEmail: "celov54484@gpipes.com",
-    userName: "celo",
-    orderID: "4500",
-    courseName: "Data Structure Algorithms",
-    coursePrice: 2000,
+    classID: 1,
     courseDescription:
-      "A 3rd semester course at SMU, continues to develop students' understanding of object oriented programming, memory management",
-    classID: 3,
+      "On completion of the module, students should be able to create 2D drawings of engineering components using a CAD system as well as produce 3D solid models and also to design a mechanical system comprising various machine elements.\r\n\r\nCAD and Engineering Design (ME4011FP) is one of the modules leading to HIGHER NITEC IN TECHNOLOGY - MECHANICAL ENGINEERING.",
+    courseName: "CAD Engineering Design 5",
+    coursePrice: 1620,
+    orderID: "855ce44b-d173-46ab-bdcc-c8cbd0210a65",
     runID: 1,
-    userID: 10,
+    userEmail: "jeromewongjh@gmail.com",
+    userID: "104803140206997670000",
+    userName: "jerome",
   };
 
   function makePayment() {
@@ -32,7 +45,10 @@ export default function PaymentPage() {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((data) => {
+        console.log(data);
+        setClientSecret(data.clientSecret);
+      });
 
     console.log(data);
   }
@@ -44,7 +60,9 @@ export default function PaymentPage() {
     clientSecret,
     appearance,
   };
-
+  useEffect(() => {
+    console.log(clientSecret);
+  }, [clientSecret]);
   return (
     <React.StrictMode>
       <div>
