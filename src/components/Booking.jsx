@@ -1,5 +1,10 @@
-const Booking = ({ timeslots, setSelectedBooking }) => {
+const Booking = ({ timeslots, setSelectedBooking, maxClassSize }) => {
   console.log(timeslots);
+  // return false if no slots left
+  // function checkSlots(run) {
+  //   return run[1].availableSlots === 0 ? false : true;
+  // }
+  // timeslots = timeslots.filter(checkSlots);
   return (
     <table className="w-full table-auto border border-gray-200 text-left text-xs dark:border-gray-700">
       <thead className=" bg-gray-200 text-center font-medium text-gray-600 dark:bg-gray-900 dark:text-white">
@@ -32,7 +37,7 @@ const Booking = ({ timeslots, setSelectedBooking }) => {
               />
             </td>
             <td className="whitespace-nowrap border border-gray-200 px-2 py-2 dark:border-gray-700">
-              {timeslot[1].availableSlots}
+              {maxClassSize - timeslot[1].participants.length}
             </td>
             <td className="whitespace-nowrap border border-gray-200 px-2 py-2 dark:border-gray-700">
               {timeslot[1].date}

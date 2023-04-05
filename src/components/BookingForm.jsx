@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+
 import Button from "./Button";
 import {
   HiOutlineCalendarDays,
@@ -81,17 +82,20 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
           <div className="mt-5 flex items-center justify-end gap-3 px-10 py-4">
             <Link
               to="/payment"
-              state={{
-                userEmail: userDetails.email,
-                userName: userDetails.given_name,
-                orderID: uuid(),
-                courseName: courseDesc.className.replace(/-/g, " "),
-                coursePrice: courseDesc.fees,
-                courseDescription: courseDesc.content,
-                classID: Number(courseDesc["_id"]),
-                runID: Number(selectedBooking[0]),
-                userID: userDetails.id,
-              }}
+              state={[
+                {
+                  userEmail: userDetails.email,
+                  userName: userDetails.given_name,
+                  orderID: uuid(),
+                  courseName: courseDesc.className.replace(/-/g, " "),
+                  coursePrice: courseDesc.fees,
+                  courseDescription: courseDesc.content,
+                  classID: Number(courseDesc["_id"]),
+                  runID: Number(selectedBooking[0]),
+                  userID: userDetails.id,
+                },
+                userDetails,
+              ]}
             >
               <Button
                 name="Proceed to Payment"

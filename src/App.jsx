@@ -24,7 +24,7 @@ function App() {
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         setUser(res.data);
-        toast.success("Successfully Logged In");
+        toast.success("Successfully Logged In", { duration: 10000 });
       })
       .catch((err) => {
         console.log(err);
@@ -39,7 +39,6 @@ function App() {
   useEffect(() => {
     console.log("🚀 ~ file: App.jsx:42 ~ App ~ user:", user);
   }, [user]);
-  // note: good practice to not fetch API from useEffect hook but not important
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -56,7 +55,7 @@ function App() {
 
   return (
     <React.StrictMode>
-      <Toaster position="bottom-right" reverseOrder={false} />
+      {/* <Toaster position="bottom-right" reverseOrder={false} /> */}
       <div>
         {user ? (
           <Layout user={user}>
