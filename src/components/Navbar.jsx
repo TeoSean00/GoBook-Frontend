@@ -31,7 +31,7 @@ export default function Navbar({ user }) {
               <div className="flex gap-x-3">
                 <Link
                   to="/"
-                  className="block self-center whitespace-nowrap text-xl font-semibold text-blue-700 dark:text-gray-50"
+                  className="block self-center whitespace-nowrap text-xl font-semibold text-blue-700 hover:cursor-alias dark:text-gray-50"
                 >
                   GoBook
                 </Link>
