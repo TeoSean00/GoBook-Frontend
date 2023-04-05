@@ -12,7 +12,7 @@ const RecommendationCatalogue = ({ user }) => {
   const [courseData, setCourseData] = useState();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
-  const [recommendation, setRecommendation] = useState();
+  const [recommendation, setRecommendation] = useState([]);
   const [viewRecommedation, setViewRecommedation] = useState(false);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const updateRecommendedClasses = async (classes) => {
     await axios
-    .put(`http://localhost:5001/users/addrecc/114532673980137782859`, {recommended_classes: classes})
+    .put(`http://localhost:5001/users/addrecc/112532673980137782859`, {recommended_classes: classes})
     .then((res) => {
       console.log("Response is " + res);
     })
@@ -63,7 +63,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const getRecommendedClasses = async () => {
     await axios
-    .get(`http://localhost:5001/getUser/114532673980137782859`)
+    .get(`http://localhost:5001/getUser/112532673980137782859`)
     .then((res) => {
       var recommended_classes = res.data.recommended_classes
       setRecommendation(recommended_classes);
@@ -95,14 +95,16 @@ const RecommendationCatalogue = ({ user }) => {
     <section className="mt-2  w-full rounded-lg border  border-gray-200 bg-gray-50 py-5 shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {" "}
+        {recommendation.length !== 0 ? (
         <h1
           className="mb-4 text-center text-4xl font-extrabold leading-tight tracking-tight dark:text-gray-200 md:text-5xl"
           data-aos="zoom-y-out"
         >
           Recommended Courses
-        </h1>{" "}
+        </h1>
+        ): null}
         <div ref={parent} className="flex  flex-col items-center pb-10">
-          {recommendation ? (
+          {recommendation.length !== 0 ? (
             <CourseCardLayout>
               {recommendation
                 .filter((course) => {
@@ -121,19 +123,7 @@ const RecommendationCatalogue = ({ user }) => {
                   );
                 })}
             </CourseCardLayout>
-          ) : (
-            <div className="py-12 md:pt-40 md:pb-20">
-              {/* Section header */}
-              <div className="pb-12 text-center text-gray-700 md:pb-16">
-                <h1
-                  className="mb-4 text-3xl font-medium leading-tight tracking-tight dark:text-gray-200"
-                  data-aos="zoom-y-out"
-                >
-                  No Recommended Classes yet! <br />
-                </h1>
-              </div>
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     </section>
