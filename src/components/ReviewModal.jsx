@@ -41,7 +41,7 @@ const ReviewModal = ({ setIsReviewOpen, review }) => {
                 ))}
               </div>
               <p className=" pb-5 text-start text-sm leading-6 tracking-wider text-gray-800  dark:text-gray-200">
-                " {review.reviewContent} "
+                "{review.reviewContent}"
               </p>
             </div>
           </div>

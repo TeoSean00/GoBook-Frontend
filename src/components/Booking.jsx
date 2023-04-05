@@ -21,7 +21,6 @@ const Booking = ({ timeslots, setSelectedBooking }) => {
         {timeslots.map((timeslot, idx) => (
           <tr key={idx}>
             <td className="whitespace-nowrap border border-gray-200 px-2 py-2 dark:border-gray-700">
-              {/* {timeslot[0][0]} */}
               <input
                 onChange={(e) => setSelectedBooking(timeslot[1])}
                 id="default-radio-1"
