@@ -63,7 +63,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const getRecommendedClasses = async () => {
     await axios
-    .get(`http://localhost:5001/getUser/112532673980137782859`)
+    .get(`localhost:5001/users/getUser/112532673980137782859`)
     .then((res) => {
       var recommended_classes = res.data.recommended_classes
       setRecommendation(recommended_classes);
