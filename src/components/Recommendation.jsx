@@ -28,9 +28,9 @@ const RecommendationCatalogue = ({ user }) => {
     socket.on("message", (data) => {
       console.log("Received message:", data);
       if (data.userId == "user3") {
-        setRecommendation(data);
+        setRecommendation(data.recommendation);
       }
-      console.log("recommendation is", recommendation);
+      
       // Update the React state or UI based on the message data
     });
 
@@ -38,21 +38,24 @@ const RecommendationCatalogue = ({ user }) => {
       socket.disconnect();
     };
   }, []);
-
-  const handleFetchClassData = async (codeRes) => {
-    await axios
-      //configured api route to localhost:5006 for mac
-      .get("http://localhost:5006/class")
-      .then((res) => {
-        setCourseData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
-    handleFetchClassData();
-  }, []);
+    console.log("recommendation is", recommendation);
+  }, [recommendation])
+
+  // const handleFetchClassData = async (codeRes) => {
+  //   await axios
+  //     //configured api route to localhost:5006 for mac
+  //     .get("http://localhost:5006/class")
+  //     .then((res) => {
+  //       setCourseData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  // useEffect(() => {
+  //   handleFetchClassData();
+  // }, []);
   // useEffect(() => {
   //   console.log("🚀 courseData:", courseData);
   // }, [courseData]);
@@ -69,9 +72,9 @@ const RecommendationCatalogue = ({ user }) => {
         </h1>{" "}
         <Searchbar input={input} setInput={setInput} />
         <div ref={parent} className="flex  flex-col items-center pb-10">
-          {courseData ? (
+          {recommendation ? (
             <CourseCardLayout>
-              {courseData
+              {recommendation
                 .filter((course) => {
                   if (input === "") return course;
                   else {
@@ -81,7 +84,7 @@ const RecommendationCatalogue = ({ user }) => {
                 .map((course) => {
                   return (
                     <CourseCard
-                      key={course["_id"]["$oid"]}
+                      key={course["_id"]}
                       course={course}
                       user={user}
                     />
