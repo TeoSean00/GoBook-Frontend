@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { toast } from "react-hot-toast";
 
 export default function Navbar({ user }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -31,6 +32,9 @@ export default function Navbar({ user }) {
               <div className="flex gap-x-3">
                 <Link
                   to="/"
+                  onClick={() => {
+                    toast.success("Home page");
+                  }}
                   className="block self-center whitespace-nowrap text-xl font-semibold text-blue-700 hover:cursor-alias dark:text-gray-50"
                 >
                   GoBook
@@ -38,6 +42,9 @@ export default function Navbar({ user }) {
                 <Link
                   to="/profile"
                   state={user}
+                  onClick={() => {
+                    toast.success("Profile Page");
+                  }}
                   className="flex cursor-alias  items-center justify-center rounded  text-gray-700 dark:text-gray-400  dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
                 >
                   <img
@@ -71,6 +78,9 @@ export default function Navbar({ user }) {
                     <Link
                       to="/courses"
                       state={user}
+                      onClick={() => {
+                        toast.success("Courses page");
+                      }}
                       className="flex h-full w-full cursor-alias items-center justify-end  rounded py-2 px-3 text-gray-700   hover:text-blue-700  dark:text-gray-400 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent md:dark:hover:text-white"
                     >
                       Courses
