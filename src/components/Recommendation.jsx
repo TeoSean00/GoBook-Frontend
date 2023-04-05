@@ -38,9 +38,14 @@ const RecommendationCatalogue = ({ user }) => {
       socket.disconnect();
     };
   }, []);
+
   useEffect(() => {
     console.log("recommendation is", recommendation);
   }, [recommendation])
+
+  const updateRecommendedClasses = (classes) => {
+    
+  }
 
   // const handleFetchClassData = async (codeRes) => {
   //   await axios
@@ -68,9 +73,8 @@ const RecommendationCatalogue = ({ user }) => {
           className="mb-4 text-center text-4xl font-extrabold leading-tight tracking-tight dark:text-gray-200 md:text-5xl"
           data-aos="zoom-y-out"
         >
-          Courses
+          Recommended Courses
         </h1>{" "}
-        <Searchbar input={input} setInput={setInput} />
         <div ref={parent} className="flex  flex-col items-center pb-10">
           {recommendation ? (
             <CourseCardLayout>
@@ -99,17 +103,7 @@ const RecommendationCatalogue = ({ user }) => {
                   className="mb-4 text-3xl font-medium leading-tight tracking-tight dark:text-gray-200"
                   data-aos="zoom-y-out"
                 >
-                  Course data can only be accessed locally! <br /> Checkout our
-                  <a
-                    href="https://github.com/TeoSean00/ESD-ClassBookingSystem-Frontend"
-                    className="cursor-alias"
-                    target="_blank"
-                  >
-                    {" "}
-                    <span className="bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent">
-                      Github
-                    </span>
-                  </a>
+                  No Recommended Classes yet! <br />
                 </h1>
               </div>
             </div>
