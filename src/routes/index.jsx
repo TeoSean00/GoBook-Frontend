@@ -7,6 +7,7 @@ import PaymentPage from "../pages/PaymentPage";
 import ProfilePage from "../pages/ProfilePage";
 import CourseDescription from "../pages/CourseDescription";
 import RecommendationCatalogue from "../components/Recommendation";
+import BookingPage from "../pages/BookingPage";
 
 const AppRoutes = () => (
   <Routes>

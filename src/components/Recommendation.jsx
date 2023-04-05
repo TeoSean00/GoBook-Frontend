@@ -31,7 +31,7 @@ const RecommendationCatalogue = ({ user }) => {
       if (data.userId == "user3") {
         setRecommendation(data.recommendation);
       }
-      
+
       // Update the React state or UI based on the message data
     });
     getRecommendedClasses();
@@ -42,36 +42,38 @@ const RecommendationCatalogue = ({ user }) => {
 
   useEffect(() => {
     console.log("recommendation is", recommendation);
-    if (recommendation !== undefined ){
-      if (recommendation.length > 0){
+    if (recommendation !== undefined) {
+      if (recommendation.length > 0) {
         console.log("recommendation is", recommendation);
         updateRecommendedClasses(recommendation);
       }
     }
-  }, [recommendation])
+  }, [recommendation]);
 
   const updateRecommendedClasses = async (classes) => {
     await axios
-    .put(`http://localhost:5001/users/addrecc/112532673980137782859`, {recommended_classes: classes})
-    .then((res) => {
-      console.log("Response is " + res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .put(`http://localhost:5001/users/addrecc/112532673980137782859`, {
+        recommended_classes: classes,
+      })
+      .then((res) => {
+        console.log("Response is " + res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getRecommendedClasses = async () => {
     await axios
-    .get(`http://localhost:5001/getUser/112532673980137782859`)
-    .then((res) => {
-      var recommended_classes = res.data.recommended_classes
-      setRecommendation(recommended_classes);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .get("http://localhost:5001/users/getUser/" + "112532673980137782859")
+      .then((res) => {
+        var recommended_classes = res.data.recommended_classes;
+        setRecommendation(recommended_classes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // const handleFetchClassData = async (codeRes) => {
   //   await axios
@@ -96,13 +98,13 @@ const RecommendationCatalogue = ({ user }) => {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {" "}
         {recommendation.length !== 0 ? (
-        <h1
-          className="mb-4 text-center text-4xl font-extrabold leading-tight tracking-tight dark:text-gray-200 md:text-5xl"
-          data-aos="zoom-y-out"
-        >
-          Recommended Courses
-        </h1>
-        ): null}
+          <h1
+            className="mb-4 text-center text-4xl font-extrabold leading-tight tracking-tight dark:text-gray-200 md:text-5xl"
+            data-aos="zoom-y-out"
+          >
+            Recommended Courses
+          </h1>
+        ) : null}
         <div ref={parent} className="flex  flex-col items-center pb-10">
           {recommendation.length !== 0 ? (
             <CourseCardLayout>
