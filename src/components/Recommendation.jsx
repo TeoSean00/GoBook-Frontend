@@ -13,6 +13,7 @@ const RecommendationCatalogue = ({ user }) => {
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
   const [recommendation, setRecommendation] = useState();
+  const [viewRecommedation, setViewRecommedation] = useState(false);
 
   useEffect(() => {
     const socket = io("http://localhost:5011");
@@ -41,10 +42,23 @@ const RecommendationCatalogue = ({ user }) => {
 
   useEffect(() => {
     console.log("recommendation is", recommendation);
+    if (recommendation !== undefined ){
+      if (recommendation.length > 0){
+        console.log("recommendation is", recommendation);
+        updateRecommendedClasses(recommendation);
+      }
+    }
   }, [recommendation])
 
-  const updateRecommendedClasses = (classes) => {
-    
+  const updateRecommendedClasses = async (classes) => {
+    await axios
+    .put(`http://localhost:5001/users/addrecc/114532673980137782859`, {recommended_classes: classes})
+    .then((res) => {
+      console.log("Response is " + res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   // const handleFetchClassData = async (codeRes) => {
