@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Button from "./components/Button";
 import Hero from "./components/Hero";
 import CourseCatalogue from "./components/CourseCatalogue";
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -21,10 +22,19 @@ function App() {
           },
         }
       )
-      .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
-        setUser(res.data);
-        toast.success("Successfully Logged In", { duration: 10000 });
+      .then(async (res) => {
+        console.log("Google OAuth User data> ", res.data)
+        await axios
+          .post("http://127.0.0.1:5001/users/addUser", res.data)
+            .then(async (userDBData) => {
+              localStorage.setItem("user", JSON.stringify(userDBData.data));
+              setUser(userDBData.data);
+              console.log("User data fetched from backend> ", userDBData.data)
+              toast.success("Successfully Logged In", { duration: 10000 });
+            })
+            .catch((error) => {
+              console.log("error making POST request", error)
+            })
       })
       .catch((err) => {
         console.log(err);
