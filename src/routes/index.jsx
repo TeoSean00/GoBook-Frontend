@@ -6,7 +6,7 @@ import Courses from "../pages/Courses";
 import PaymentPage from "../pages/PaymentPage";
 import ProfilePage from "../pages/ProfilePage";
 import CourseDescription from "../pages/CourseDescription";
-import TestPurchase from "../components/TestPurchase";
+
 import ConfirmationPage from "../pages/ConfirmationPage";
 
 const AppRoutes = () => (
@@ -18,7 +18,6 @@ const AppRoutes = () => (
     <Route exact path="/payment" element={<PaymentPage />} />
     <Route exact path="/confirmation" element={<ConfirmationPage />} />
     <Route exact path="/courses/:name/:id" element={<CourseDescription />} />
-    <Route exact path="/testPurchase" element={<TestPurchase />} />
   </Routes>
 );
 
