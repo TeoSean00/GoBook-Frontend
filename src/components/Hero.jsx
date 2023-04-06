@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import { toast } from "react-hot-toast";
-const Hero = ({ user }) => {
+const Hero = ({ user, setIsReviewForm }) => {
   return (
     <section className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-10 shadow dark:border-gray-700 dark:bg-gray-800">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -40,7 +40,11 @@ const Hero = ({ user }) => {
                     onClick={() => toast.success("Courses Page")}
                   />
                 </Link>
-                <Button name="Write a review" color={"gray"} />
+                <Button
+                  name="Write a review"
+                  color={"gray"}
+                  onClick={() => setIsReviewForm(true)}
+                />
               </div>
             </div>
           </div>
