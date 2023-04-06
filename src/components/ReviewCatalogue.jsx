@@ -40,10 +40,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
       ) : (
         <div className=" flex items-center justify-center py-10 text-center text-gray-700 ">
           <h1 className="text-2xl font-medium leading-tight tracking-tight dark:text-gray-200">
-            No reviews yet! Write a{" "}
-            <span className="bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent hover:cursor-alias">
-              Review
-            </span>
+            No reviews yet!
           </h1>
         </div>
       )}

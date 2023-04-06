@@ -8,12 +8,13 @@ import Button from "./components/Button";
 import Hero from "./components/Hero";
 import CourseCatalogue from "./components/CourseCatalogue";
 import RecommendationCatalogue from "./components/Recommendation";
+import ReviewForm from "./components/ReviewForm";
 
 //socket io listener
 import io from "socket.io-client";
 function App() {
   const [user, setUser] = useState(null);
-
+  const [isReviewForm, setIsReviewForm] = useState(false);
   const handleFetch = async (codeResponse) => {
     await axios
       .get(
@@ -72,7 +73,7 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
-            <Hero user={user} />
+            <Hero user={user} setIsReviewForm={setIsReviewForm} />
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
             <RecommendationCatalogue user={user} />
@@ -84,6 +85,11 @@ function App() {
               }}
               color="red"
             />
+            {isReviewForm ? (
+              <ReviewForm setIsReviewForm={setIsReviewForm} user={user} />
+            ) : (
+              ""
+            )}
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
