@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
@@ -14,9 +14,43 @@ import {
   SiTypescript,
   SiPrisma,
 } from "react-icons/si";
+import axios from "axios";
 function ProfilePage() {
   const location = useLocation();
   const state = location.state;
+  console.log("current state> ", state)
+  const [userCourseData, setUserCourseData] = useState();
+  const [userReviewData, setUserReviewData] = useState();
+
+  // const handleFetchUserClassData = async () => {
+  //   await axios
+  //     .get(`http://localhost:5006/class/getUserClass/${state._id}`)
+  //     .then((res) => {
+  //       console.log("user class data> ", res.data)
+  //       setUserCourseData(res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
+  // useEffect(() => {
+  //   handleFetchUserClassData();
+  // }, []);
+
+  // const handleFetchUserReviewData = async () => {
+  //   await axios
+  //     .get(`http://localhost:5004/review/${state._id}`)
+  //     .then((res) => {
+  //       console.log("user review data> ", res.data)
+  //       setUserReviewData(res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
+  // useEffect(() => {
+  //   handleFetchUserReviewData();
+  // }, []);
 
   return (
     <Layout user={state}>
@@ -76,9 +110,20 @@ function ProfilePage() {
           </div>
 
           {/* TODO: this should be courses that user has taken in the past */}
-
+          <div className=" pt-10">
+            <h5 className="pb-5 text-center text-xl font-bold dark:text-gray-300">
+              Courses Attended
+            </h5>
+            
+          </div>
           {/* <CourseCatalogue /> */}
+
           {/* TODO: my reviews */}
+          <div className=" pt-10">
+            <h5 className="pb-5 text-center text-xl font-bold dark:text-gray-300">
+              Reviews Given
+            </h5>
+          </div>
         </div>
       </div>
     </Layout>

@@ -30,7 +30,7 @@ function App() {
               localStorage.setItem("user", JSON.stringify(userDBData.data));
               setUser(userDBData.data);
               console.log("User data fetched from backend> ", userDBData.data)
-              toast.success("Successfully Logged In");
+              toast.success("Successfully Logged In", { duration: 10000 });
             })
             .catch((error) => {
               console.log("error making POST request", error)
@@ -49,7 +49,6 @@ function App() {
   useEffect(() => {
     console.log("🚀 ~ file: App.jsx:42 ~ App ~ user:", user);
   }, [user]);
-  // note: good practice to not fetch API from useEffect hook but not important
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -66,14 +65,21 @@ function App() {
 
   return (
     <React.StrictMode>
-      <Toaster position="bottom-right" reverseOrder={false} />
+      {/* <Toaster position="bottom-right" reverseOrder={false} /> */}
       <div>
         {user ? (
           <Layout user={user}>
             <Hero user={user} />
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
-            <Button name="Sign Out" onClick={logOut} color="red" />
+            <Button
+              name="Sign Out"
+              onClick={() => {
+                toast.success("Successfully Signed Out");
+                logOut();
+              }}
+              color="red"
+            />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
