@@ -125,7 +125,7 @@ const CourseDescription = () => {
               <h5 className="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900  dark:text-white md:text-start ">
                 Reviews{" "}
               </h5>
-              <div className=" text-lg font-light leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
+              <div className=" flex justify-center text-lg font-light leading-relaxed tracking-wide  text-gray-700 dark:text-gray-400 md:text-start ">
                 <ReviewCatalogue
                   setIsReviewOpen={setIsReviewOpen}
                   classId={id}
