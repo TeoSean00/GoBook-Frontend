@@ -62,7 +62,14 @@ function App() {
             <Hero user={user} />
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
-            <Button name="Sign Out" onClick={logOut} color="red" />
+            <Button
+              name="Sign Out"
+              onClick={() => {
+                toast.success("Successfully Signed Out");
+                logOut();
+              }}
+              color="red"
+            />
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
