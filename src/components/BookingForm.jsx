@@ -87,12 +87,14 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   userEmail: userDetails.email,
                   userName: userDetails.given_name,
                   orderID: uuid(),
-                  courseName: courseDesc.className.replace(/-/g, " "),
+                  className: courseDesc.className.replace(/-/g, " "),
                   coursePrice: courseDesc.fees,
                   courseDescription: courseDesc.content,
                   classID: Number(courseDesc["_id"]),
                   runID: Number(selectedBooking[0]),
-                  userID: userDetails.id,
+                  // Hardcoded for testing purposes
+                  userID: "113532673980137782859",
+                  // userID: userDetails.id,
                 },
                 userDetails,
               ]}

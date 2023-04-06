@@ -28,8 +28,8 @@ const TestPurchase = ({ user }) => {
             "userEmail": "celov54484@gpipes.com",
             "coursename": "Advanced-Information-Management-Classroom-Asynchronous",
             "runID": "1",
-            "orderID": "4500",
-            "userID": "112532673980137782859",
+            "orderID": "70143f68-3df9-419e-b221-e5d6c169da93",
+            "userID": "113532673980137782859",
             "classId": "1"
         },
         "object": "payment_intent",
@@ -51,7 +51,6 @@ const TestPurchase = ({ user }) => {
     const doPurchase = async() => {
         await axios
         .post('http://localhost:5008/update_payment', data)
-
         .then((res) => {
             console.log("Response is ");
             console.log(res);

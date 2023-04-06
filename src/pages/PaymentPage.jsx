@@ -25,11 +25,8 @@ export default function PaymentPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setClientSecret(data.clientSecret);
       });
-
-    console.log(data);
   }
 
   const appearance = {
@@ -55,7 +52,7 @@ export default function PaymentPage() {
           >
             {clientSecret && (
               <Elements options={options} stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm userData={data[0]}/>
               </Elements>
             )}
           </div>
