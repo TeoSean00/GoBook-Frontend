@@ -51,7 +51,7 @@ export default function PaymentPage() {
           <div className="mx-auto mt-10 max-w-xl rounded-xl bg-blue-200 p-10">
             {clientSecret && (
               <Elements options={options} stripe={stripePromise}>
-                <CheckoutForm userData={data[0]}/>
+                <CheckoutForm userData={data[0]} clientSecret={clientSecret} />
               </Elements>
             )}
           </div>
