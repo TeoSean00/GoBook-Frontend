@@ -89,7 +89,10 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   orderID: uuid(),
                   courseName: courseDesc.className.replace(/-/g, " "),
                   coursePrice: courseDesc.fees,
-                  courseDescription: courseDesc.content,
+                  //TO DO in future:
+                  // fix issue where courseDescription string too long
+                  // which makes it an invalid value on stripe's PaymentIntent function
+                  courseDescription: courseDesc.content.slice(0, 10),
                   classID: Number(courseDesc["_id"]),
                   runID: Number(selectedBooking[0]),
                   userID: userDetails.id,

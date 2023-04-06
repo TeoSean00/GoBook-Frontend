@@ -16,6 +16,8 @@ export default function PaymentPage() {
 
   const data = useLocation().state;
 
+  console.log(data);
+
   function makePayment() {
     fetch("http://localhost:5008/booking/createPayment", {
       method: "POST",
@@ -48,11 +50,8 @@ export default function PaymentPage() {
   return (
     <>
       {data ? (
-        <Layout user={data[1]} ref={parent}>
-          <div
-            class="mx-auto mt-10 max-w-xl rounded-xl bg-blue-200 p-10"
-            ref={parent}
-          >
+        <Layout user={data[1]}>
+          <div className="mx-auto mt-10 max-w-xl rounded-xl bg-blue-200 p-10">
             {clientSecret && (
               <Elements options={options} stripe={stripePromise}>
                 <CheckoutForm />
