@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Layout from "../components/Layout";
 import CourseCardLayout from "../components/CourseCardLayout";
 import ReviewCard from "../components/ReviewCard";
+import ReviewModal from "../components/ReviewModal";
 import axios from "axios";
 import CourseCard from "../components/CourseCard";
 import {
@@ -19,7 +20,7 @@ import {
 function ProfilePage() {
   const location = useLocation();
   const state = location.state;
-  console.log("current state> ", state)
+  console.log("current state> ", state);
   const [userCourseData, setUserCourseData] = useState([]);
   const [userReviewData, setUserReviewData] = useState([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
@@ -29,13 +30,13 @@ function ProfilePage() {
     await axios
       .get(`http://localhost:5006/class/getUserClass/${state._id}`)
       .then((res) => {
-        console.log("user class data> ", res.data)
-        setUserCourseData(res.data)
+        console.log("user class data> ", res.data);
+        setUserCourseData(res.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
   useEffect(() => {
     handleFetchUserClassData();
   }, []);
@@ -44,13 +45,13 @@ function ProfilePage() {
     await axios
       .get(`http://localhost:5004/review/${state._id}`)
       .then((res) => {
-        console.log("user review data> ", res.data)
-        setUserReviewData(res.data)
+        console.log("user review data> ", res.data);
+        setUserReviewData(res.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
   useEffect(() => {
     handleFetchUserReviewData();
   }, []);
@@ -118,19 +119,18 @@ function ProfilePage() {
             </h5>
             {userCourseData.length != 0 ? (
               <CourseCardLayout>
-                  {userCourseData.map((course) => {
-                    return (
-                      <CourseCard
-                        key={course["_id"]}
-                        course={course}
-                        user={state}
-                      />
-                    )
-                  })
-                  }
+                {userCourseData.map((course) => {
+                  return (
+                    <CourseCard
+                      key={course["_id"]}
+                      course={course}
+                      user={state}
+                    />
+                  );
+                })}
               </CourseCardLayout>
             ) : (
-              <div className=" flex items-center justify-center py-1 mb-1 text-center text-gray-700 ">
+              <div className=" mb-1 flex items-center justify-center py-1 text-center text-gray-700 ">
                 <h1 className="text-2xl font-medium leading-tight tracking-tight dark:text-gray-200">
                   No courses yet! Attend a{" "}
                   <span className="bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent hover:cursor-alias">
@@ -141,12 +141,12 @@ function ProfilePage() {
             )}
           </div>
           {/* Reviews Given */}
-          <div className=" pt-10 mt-1 ">
+          <div className=" mt-1 pt-10 ">
             <h5 className="pb-5 text-center text-2xl font-bold dark:text-gray-300">
               Reviews Given
             </h5>
             {userReviewData.length != 0 ? (
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-2 lg:grid-cols-3">
                 {userReviewData.map((review) => {
                   return (
                     <ReviewCard
@@ -170,6 +170,14 @@ function ProfilePage() {
             )}
           </div>
         </div>
+        {isReviewOpen && reviewContent ? (
+          <ReviewModal
+            setIsReviewOpen={setIsReviewOpen}
+            review={reviewContent}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </Layout>
   );
