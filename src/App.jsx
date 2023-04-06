@@ -25,10 +25,19 @@ function App() {
           },
         }
       )
-      .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
-        setUser(res.data);
-        toast.success("Successfully Logged In", { duration: 10000 });
+      .then(async (res) => {
+        console.log("Google OAuth User data> ", res.data)
+        await axios
+          .post("http://127.0.0.1:5001/users/addUser", res.data)
+            .then(async (userDBData) => {
+              localStorage.setItem("user", JSON.stringify(userDBData.data));
+              setUser(userDBData.data);
+              console.log("User data fetched from backend> ", userDBData.data)
+              toast.success("Successfully Logged In", { duration: 10000 });
+            })
+            .catch((error) => {
+              console.log("error making POST request", error)
+            })
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +76,14 @@ function App() {
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
             <RecommendationCatalogue user={user} />
-            <Button name="Sign Out" onClick={logOut} color="red" />
+            <Button
+              name="Sign Out"
+              onClick={() => {
+                toast.success("Successfully Signed Out");
+                logOut();
+              }}
+              color="red"
+            />
             {/* <TestPurchase /> */}
           </Layout>
         ) : (
