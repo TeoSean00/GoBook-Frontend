@@ -16,7 +16,7 @@ export default function PaymentPage() {
   console.log(data);
 
   function makePayment() {
-    fetch("http://localhost:8000/process_booking/update_payment", {
+    fetch("http://localhost:5008/booking/createPayment", {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
