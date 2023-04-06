@@ -23,9 +23,9 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
     handleFetchClassReviews();
   }, []);
   return (
-    <>
+    <div>
       {reviews?.length !== 0 ? (
-        <div className="grid items-center gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-2 lg:grid-cols-3">
           {reviews?.map((review) => {
             return (
               <ReviewCard
@@ -47,7 +47,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
           </h1>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
