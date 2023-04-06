@@ -87,7 +87,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   userEmail: userDetails.email,
                   userName: userDetails.given_name,
                   orderID: uuid(),
-                  courseName: courseDesc.className.replace(/-/g, " "),
+                  className: courseDesc.className.replace(/-/g, " "),
                   coursePrice: courseDesc.fees,
                   //TO DO in future:
                   // fix issue where courseDescription string too long
@@ -95,7 +95,9 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   courseDescription: courseDesc.content.slice(0, 10),
                   classID: Number(courseDesc["_id"]),
                   runID: Number(selectedBooking[0]),
-                  userID: userDetails.id,
+                  // Hardcoded for testing purposes
+                  userID: "113532673980137782859",
+                  // userID: userDetails.id,
                 },
                 userDetails,
               ]}

@@ -27,11 +27,8 @@ export default function PaymentPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setClientSecret(data.clientSecret);
       });
-
-    console.log(data);
   }
 
   const appearance = {
@@ -54,7 +51,7 @@ export default function PaymentPage() {
           <div className="mx-auto mt-10 max-w-xl rounded-xl bg-blue-200 p-10">
             {clientSecret && (
               <Elements options={options} stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm userData={data[0]} clientSecret={clientSecret} />
               </Elements>
             )}
           </div>
