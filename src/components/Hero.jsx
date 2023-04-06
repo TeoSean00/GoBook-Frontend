@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-
+import { toast } from "react-hot-toast";
 const Hero = ({ user }) => {
   return (
     <section className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-10 shadow dark:border-gray-700 dark:bg-gray-800">
@@ -34,7 +34,11 @@ const Hero = ({ user }) => {
                 data-aos-delay="300"
               >
                 <Link to="/courses" state={user}>
-                  <Button name="Start Booking" color={"blue"} />
+                  <Button
+                    name="Start Booking"
+                    color={"blue"}
+                    onClick={() => toast.success("Courses Page")}
+                  />
                 </Link>
                 <Button name="Write a review" color={"gray"} />
               </div>
