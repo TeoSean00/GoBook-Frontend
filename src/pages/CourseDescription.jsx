@@ -21,7 +21,7 @@ const CourseDescription = () => {
   const [reviewContent, setReviewContent] = useState(null);
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
-      .get(`http://localhost:5006/class/${id}`)
+      .get(`http://localhost:8000/classes/${id}`)
       .then((res) => {
         setCourseDesc(res.data);
       })
