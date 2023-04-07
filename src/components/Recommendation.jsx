@@ -17,7 +17,10 @@ const RecommendationCatalogue = ({ user }) => {
   const [recommendation, setRecommendation] = useState();
 
   useEffect(() => {
-    const socket = io("http://localhost:8000/consumer_service");
+    const socket = io("http://localhost:8000", {
+      path: "/consumer_service/socket.io",
+    });
+    // const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
       console.log("WebSocket connection opened");

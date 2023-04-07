@@ -12,6 +12,8 @@ import {
 } from "react-icons/hi2";
 const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
   const userDetails = useLocation().state;
+  console.log("User Details: ")
+  console.log(userDetails)
   console.log(courseDesc, selectedBooking);
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -97,7 +99,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   runID: Number(selectedBooking[0]),
                   // Hardcoded for testing purposes
                   // userID: "112532673980137782859",
-                  userID: userDetails.id,
+                  userID: userDetails["_id"],
                 },
                 userDetails,
               ]}

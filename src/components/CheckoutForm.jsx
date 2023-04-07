@@ -66,7 +66,10 @@ export default function CheckoutForm({ userData, clientSecret }) {
 
   useEffect(() => {
     setFormData(data);
-    const socket = io("http://localhost:8000/consumer_service");
+    const socket = io("http://localhost:8000", {
+      path: "/consumer_service/socket.io",
+    });
+    // const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
       console.log("WebSocket connection opened");
@@ -97,7 +100,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
 
   const updateRecommendedClasses = async (classes) => {
     await axios
-      .put(`http://localhost:8000/users/recc/112532673980137782859`, {
+      .put(`http://localhost:8000/users/recc/${userData["userID"]}`, {
         recommended_classes: classes,
       })
       .then((res) => {
@@ -113,7 +116,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
     console.log(formData);
     await axios
     // error with this route for now 
-      .post("http://localhost:5008/update_payment", formData)
+      .post("http://localhost:8000/process_booking/update_payment", formData)
       .then((res) => {
         console.log("Response is ");
         console.log(res);
