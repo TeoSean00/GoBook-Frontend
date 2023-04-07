@@ -21,46 +21,46 @@ export default function CheckoutForm({ userData, clientSecret }) {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(null);
   const data = {
-    amount: userData["coursePrice"],
-    amount_capturable: 0,
-    amount_details: {
-      tip: {},
+    "amount": userData["coursePrice"],
+    "amount_capturable": 0,
+    "amount_details": {
+      "tip": {},
     },
-    amount_received: userData["coursePrice"],
-    automatic_payment_methods: {
-      enabled: true,
+    "amount_received": userData["coursePrice"],
+    "automatic_payment_methods": {
+      "enabled": true,
     },
-    capture_method: "automatic",
-    client_secret: clientSecret,
-    confirmation_method: "automatic",
-    created: 1680003858,
-    currency: "sgd",
-    id: "pi_3MqawoJTqG9NvRuT1CIECYYH",
-    latest_charge: {
-      id: "ch_3MqawoJTqG9NvRuT1geYkf4z",
+    "capture_method": "automatic",
+    "client_secret": clientSecret,
+    "confirmation_method": "automatic",
+    "created": 1680003858,
+    "currency": "sgd",
+    "id": "pi_3MqawoJTqG9NvRuT1CIECYYH",
+    "latest_charge": {
+      "id": "ch_3MqawoJTqG9NvRuT1geYkf4z",
     },
-    livemode: false,
-    metadata: {
-      courseDescription: userData["courseDescription"],
-      userEmail: userData["userEmail"],
-      coursename: userData["coursename"]?.replace(/\s+/g, "-"),
-      runID: userData["runID"].toString(),
-      orderID: userData["orderID"],
-      userID: userData["userID"],
-      classId: userData["classID"].toString(),
+    "livemode": false,
+    "metadata": {
+      "courseDescription": userData["courseDescription"],
+      "userEmail": userData["userEmail"],
+      "coursename": userData["coursename"]?.replace(/\s+/g, "-"),
+      "runID": userData["runID"].toString(),
+      "orderID": userData["orderID"],
+      "userID": userData["userID"],
+      "classId": userData["classID"].toString(),
     },
-    object: "payment_intent",
-    payment_method: {
-      id: "pm_1Mqax8JTqG9NvRuTdQ8sxHYn",
+    "object": "payment_intent",
+    "payment_method": {
+      "id": "pm_1Mqax8JTqG9NvRuTdQ8sxHYn",
     },
-    payment_method_options: {
-      card: {
-        request_three_d_secure: "automatic",
+    "payment_method_options": {
+      "card": {
+        "request_three_d_secure": "automatic",
       },
-      paynow: {},
+      "paynow": {},
     },
-    payment_method_types: ["card", "paynow"],
-    status: "succeeded",
+    "payment_method_types": ["card", "paynow"],
+    "status": "succeeded",
   };
 
   useEffect(() => {
@@ -79,6 +79,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
     });
     socket.on("message", (data) => {
       // Update the React state or UI based on the message data
+      console.log(data);
       setRecommendation(data.recommendation);
     });
     return () => {
@@ -89,6 +90,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
   useEffect(() => {
     if (recommendation !== undefined) {
       if (recommendation.length > 0) {
+        console.log("recommendation loaded")
         updateRecommendedClasses(recommendation);
       }
     }
