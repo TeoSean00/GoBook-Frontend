@@ -58,7 +58,7 @@ function ProfilePage() {
 
   return (
     <Layout user={state}>
-      <div className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 p-2  shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
+      <div className="mt-2  w-full rounded-lg border  border-gray-200 bg-gray-50 p-2 pt-10  shadow dark:border-gray-700 dark:bg-gray-800 md:p-10">
         <div className="flex  flex-col items-center pb-10">
           <img className="mb-3 h-24 w-24 rounded-full" src={state.picture} />
           <h5 className=" pb-1 text-center text-3xl font-bold capitalize dark:text-gray-50">
@@ -113,7 +113,7 @@ function ProfilePage() {
             </div>
           </div>
           {/* Courses Attended */}
-          <div className=" pt-10">
+          <div className=" w-full pt-10">
             <h5 className="pb-5 text-center text-2xl font-bold dark:text-gray-300">
               Courses Attended
             </h5>
@@ -141,12 +141,12 @@ function ProfilePage() {
             )}
           </div>
           {/* Reviews Given */}
-          <div className=" mt-1 pt-10 ">
+          <div className="mt-1 w-full  pt-10">
             <h5 className="pb-5 text-center text-2xl font-bold dark:text-gray-300">
               Reviews Given
             </h5>
-            {userReviewData.length != 0 ? (
-              <div className="grid grid-cols-1 items-center gap-2 md:grid-cols-2 lg:grid-cols-3">
+            {userCourseData.length != 0 ? (
+              <CourseCardLayout>
                 {userReviewData.map((review) => {
                   return (
                     <ReviewCard
@@ -158,7 +158,7 @@ function ProfilePage() {
                     />
                   );
                 })}
-              </div>
+              </CourseCardLayout>
             ) : (
               <div className=" flex items-center justify-center py-1 text-center text-gray-700 ">
                 <h1 className="text-2xl font-medium leading-tight tracking-tight dark:text-gray-200">
