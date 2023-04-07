@@ -49,6 +49,7 @@ function App() {
   });
 
   useEffect(() => {
+    console.log(user);
   }, [user]);
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
