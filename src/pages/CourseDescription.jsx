@@ -19,6 +19,7 @@ const CourseDescription = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [reviewContent, setReviewContent] = useState(null);
+  const [userClasses, setUserClasses] = useState();
   const handleFetchCourseDescription = async (codeResponse) => {
     await axios
       .get(`http://localhost:8000/classes/${id}`)
@@ -29,12 +30,27 @@ const CourseDescription = () => {
         console.log(err);
       });
   };
+  const handleFetchUserData = async () => {
+    await axios
+      //configured api route to localhost:5006 for mac
+      .get(`http://localhost:8000/users/${state["_id"]}`)
+      .then((res) => {
+        setUserClasses(res.data["attended_classes"]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     handleFetchCourseDescription();
+    handleFetchUserData();
+    console.log(id.toString());
+    // console.log(state);
   }, []);
   useEffect(() => {
-  }, [reviewContent]);
+    console.log(userClasses);
+  }, [userClasses]);
   return (
     <Layout user={state}>
       <section
@@ -48,14 +64,20 @@ const CourseDescription = () => {
                 {name.replace(/-/g, " ")}
               </h1>
               <div className="mt-5 text-center md:mb-10 md:text-end">
-                {selectedBooking ? (
+                {selectedBooking && !userClasses.includes(id.toString()) ? (
                   <Button
                     name="Book"
                     color="green"
                     onClick={() => setIsModalOpen(true)}
                   />
                 ) : (
-                  <Button name="Book" color="disabled" />
+                  <div className="flex flex-col items-center justify-center">
+                    {userClasses.includes(id.toString()) ? (
+                      <Button name="Class Booked" color="disabled" />
+                    ) : (
+                      <Button name="Book" color="disabled" />
+                    )}
+                  </div>
                 )}
               </div>
             </div>
