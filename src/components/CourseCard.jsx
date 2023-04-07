@@ -6,15 +6,15 @@ const CourseCard = ({ course, user }) => {
     <div>
       {course ? (
         <Link
-          to={`/courses/${course?.className}/${course["_id"]}`}
+          to={`/courses/${course?.coursename}/${course["_id"]}`}
           state={user}
           className="block max-w-md cursor-alias rounded-lg border border-gray-200 bg-white p-3 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-800 dark:shadow-gray-700 dark:hover:bg-slate-900 sm:h-full md:p-6"
         >
           <h5
-            title={course?.className.replace(/-/g, " ")}
+            title={course?.coursename.replace(/-/g, " ")}
             className="mb-2 h-16 text-center text-2xl font-bold tracking-tight text-gray-900 line-clamp-2 dark:text-white md:h-24 md:text-start md:line-clamp-3"
           >
-            {course.className.replace(/-/g, " ")}
+            {course.coursename.replace(/-/g, " ")}
           </h5>
           <p
             title={course?.objective}
