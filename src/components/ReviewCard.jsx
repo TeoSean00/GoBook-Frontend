@@ -1,7 +1,25 @@
-import React from "react";
+import { React, useState } from "react";
 import { HiOutlineStar } from "react-icons/hi2";
+import axios from "axios";
 
-const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
+
+const ReviewCard = ({ setIsReviewOpen, review, userId, setReviewContent }) => {
+
+  const [name,setName] = useState('Anonymous user');
+  const [pic,setPic] = useState('');
+
+  const fetchUserDetails = async () => {
+    await axios 
+    .get(`http://localhost:8000/users/${userId}`)
+    .then((res) => {
+      setName(res.data.given_name)
+      setPic(res.data.picture)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  fetchUserDetails();
   return (
     <div>
       <div
@@ -39,24 +57,30 @@ const ReviewCard = ({ setIsReviewOpen, review, setReviewContent }) => {
             {review.date}
           </span>
           <div className=" mx-2 mt-2 mb-4 flex items-center  gap-x-2 rounded-md bg-blue-50 p-1.5 text-blue-600 dark:bg-slate-700 dark:text-blue-300 ">
+          {pic ? <img
+              className=" h-7 w-7 rounded-full "
+              src={pic}
+              alt="profile image"
+            /> :
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1"
               stroke="currentColor"
-              className="h-10 w-10"
+              className="h-7 w-7"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
               />
-            </svg>
-
+            </svg>}
+            
             <div>
               <span className="mt-0.5 block text-sm font-medium text-blue-600 dark:text-blue-300">
-                Anonymous User
+                {name}
+                
               </span>
             </div>
           </div>

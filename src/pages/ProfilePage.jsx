@@ -153,6 +153,7 @@ function ProfilePage() {
                       setIsReviewOpen={setIsReviewOpen}
                       key={review["_id"]["$oid"]}
                       review={review}
+                      userId={review.userId}
                       setReviewContent={setReviewContent}
                     />
                   );

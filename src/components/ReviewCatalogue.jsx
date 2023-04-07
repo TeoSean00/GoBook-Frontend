@@ -32,6 +32,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
                 setIsReviewOpen={setIsReviewOpen}
                 key={review["_id"]["$oid"]}
                 review={review}
+                userId={review.userId}
                 setReviewContent={setReviewContent}
               />
             );
