@@ -57,7 +57,7 @@ const CourseDescription = () => {
         ref={parent}
         className="mt-2  w-full  rounded-lg  border border-gray-200 bg-gray-50 shadow dark:border-gray-700 dark:bg-gray-800 lg:p-10"
       >
-        {courseDesc ? (
+        {courseDesc && userClasses ? (
           <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
             <div className="items-center justify-between md:flex">
               <h1 className="my-5 w-full text-center text-3xl font-extrabold leading-tight tracking-tight text-blue-700 dark:text-blue-600 md:mb-10 md:w-[85%] md:text-start lg:text-5xl">
@@ -72,7 +72,7 @@ const CourseDescription = () => {
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center">
-                    {userClasses.includes(id.toString()) ? (
+                    {userClasses?.includes(id.toString()) ? (
                       <Button name="Class Booked" color="disabled" />
                     ) : (
                       <Button name="Book" color="disabled" />
