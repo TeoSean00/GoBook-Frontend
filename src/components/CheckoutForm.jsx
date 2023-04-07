@@ -43,7 +43,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
     metadata: {
       courseDescription: userData["courseDescription"],
       userEmail: userData["userEmail"],
-      coursename: userData["className"]?.replace(/\s+/g, "-"),
+      coursename: userData["coursename"]?.replace(/\s+/g, "-"),
       runID: userData["runID"].toString(),
       // orderID: userData["orderID"],
       orderID: "70143f68-3df9-419e-b221-e5d6c169da93",

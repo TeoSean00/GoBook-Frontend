@@ -45,7 +45,7 @@ const CourseCatalogue = ({ user }) => {
                 .filter((course) => {
                   if (input === "") return course;
                   else {
-                    return course.className.toLowerCase().includes(input);
+                    return course.coursename.toLowerCase().includes(input);
                   }
                 })
                 .map((course) => {
