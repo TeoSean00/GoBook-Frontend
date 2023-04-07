@@ -10,7 +10,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
 
   const handleFetchClassReviews = async () => {
     await axios
-      .get(`http://localhost:5004/review/class/${id}`)
+      .get(`http://localhost:8000/reviews/class/${id}`)
       .then((res) => {
         setReviews(res.data);
       })
@@ -32,6 +32,7 @@ const ReviewCatalogue = ({ setIsReviewOpen, setReviewContent }) => {
                 setIsReviewOpen={setIsReviewOpen}
                 key={review["_id"]["$oid"]}
                 review={review}
+                userId={review.userId}
                 setReviewContent={setReviewContent}
               />
             );

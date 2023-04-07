@@ -3,18 +3,24 @@ import axios from "axios";
 import CourseCardLayout from "./CourseCardLayout";
 import CourseCard from "./CourseCard";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Searchbar from "./Searchbar";
+import { useLocation, Link } from "react-router-dom";
 
 //socket io listener
 import io from "socket.io-client";
 
 const RecommendationCatalogue = ({ user }) => {
+  const location = useLocation();
+  const state = location.state;
+  console.log("current state> ", user._id);
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
   const [recommendation, setRecommendation] = useState();
 
   useEffect(() => {
-    const socket = io("http://localhost:5011");
+    const socket = io("http://localhost:8000", {
+      path: "/consumer_service/socket.io",
+    });
+    // const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
       console.log("WebSocket connection opened");
@@ -26,8 +32,7 @@ const RecommendationCatalogue = ({ user }) => {
 
     socket.on("message", (data) => {
       console.log("Received message:", data);
-      // Hardcoded user id for now
-      if (data.userId == "112532673980137782859") {
+      if (data.userId == user._id) {
         setRecommendation(data.recommendation);
       }
 
@@ -51,7 +56,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const updateRecommendedClasses = async (classes) => {
     await axios
-      .put(`http://localhost:5001/users/addrecc/112532673980137782859`, {
+      .put(`http://localhost:8000/users/recc/${user._id}`, {
         recommended_classes: classes,
       })
       .then((res) => {
@@ -64,7 +69,8 @@ const RecommendationCatalogue = ({ user }) => {
 
   const getRecommendedClasses = async () => {
     await axios
-      .get(`http://localhost:5001/users/getUser/112532673980137782859`)
+    // to update with Kong route later
+      .get(`http://localhost:8000/users/${user._id}`)
       .then((res) => {
         var recommended_classes = res.data.recommended_classes;
         setRecommendation(recommended_classes);

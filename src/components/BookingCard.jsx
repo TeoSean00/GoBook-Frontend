@@ -54,7 +54,7 @@ const BookingCard = () => {
   };
 
   const submitBooking = () => {
-    alert(course.className + selectedDate + selectedTime)
+    alert(course.coursename + selectedDate + selectedTime)
   }
 
   return (
@@ -100,7 +100,7 @@ const BookingCard = () => {
 export default BookingCard;
 const course = 
   {
-    className: "Fullstack Web Development",
+    coursename: "Fullstack Web Development",
     objective:
       " Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
     classes: [

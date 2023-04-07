@@ -29,7 +29,7 @@ function App() {
       .then(async (res) => {
         console.log("Google OAuth User data> ", res.data);
         await axios
-          .post("http://127.0.0.1:5001/users/addUser", res.data)
+          .post("http://127.0.0.1:8000/users/addUser", res.data)
           .then(async (userDBData) => {
             localStorage.setItem("user", JSON.stringify(userDBData.data));
             setUser(userDBData.data);

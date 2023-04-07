@@ -43,10 +43,10 @@ export default function CheckoutForm({ userData, clientSecret }) {
     metadata: {
       courseDescription: userData["courseDescription"],
       userEmail: userData["userEmail"],
-      coursename: userData["className"]?.replace(/\s+/g, "-"),
+      coursename: userData["coursename"]?.replace(/\s+/g, "-"),
       runID: userData["runID"].toString(),
-      // orderID: userData["orderID"],
-      orderID: "70143f68-3df9-419e-b221-e5d6c169da93",
+      orderID: userData["orderID"],
+      // orderID: "70143f68-3df9-419e-b221-e5d6c169da93",
       userID: userData["userID"],
       classId: userData["classID"].toString(),
     },
@@ -66,7 +66,10 @@ export default function CheckoutForm({ userData, clientSecret }) {
 
   useEffect(() => {
     setFormData(data);
-    const socket = io("http://localhost:5011");
+    const socket = io("http://localhost:8000", {
+      path: "/consumer_service/socket.io",
+    });
+    // const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
       console.log("WebSocket connection opened");
@@ -97,7 +100,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
 
   const updateRecommendedClasses = async (classes) => {
     await axios
-      .put(`http://localhost:5001/users/addrecc/112532673980137782859`, {
+      .put(`http://localhost:8000/users/recc/${userData["userID"]}`, {
         recommended_classes: classes,
       })
       .then((res) => {
@@ -112,7 +115,8 @@ export default function CheckoutForm({ userData, clientSecret }) {
     console.log("FORM DATA");
     console.log(formData);
     await axios
-      .post("http://localhost:5008/update_payment", formData)
+    // error with this route for now 
+      .post("http://localhost:8000/process_booking/update_payment", formData)
       .then((res) => {
         console.log("Response is ");
         console.log(res);

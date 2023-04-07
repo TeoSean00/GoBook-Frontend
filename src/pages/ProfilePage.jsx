@@ -28,7 +28,7 @@ function ProfilePage() {
 
   const handleFetchUserClassData = async () => {
     await axios
-      .get(`http://localhost:5006/class/getUserClass/${state._id}`)
+      .get(`http://localhost:8000/classes/getUserClass/${state._id}`)
       .then((res) => {
         console.log("user class data> ", res.data);
         setUserCourseData(res.data);
@@ -43,7 +43,7 @@ function ProfilePage() {
 
   const handleFetchUserReviewData = async () => {
     await axios
-      .get(`http://localhost:5004/review/${state._id}`)
+      .get(`http://localhost:8000/reviews/user/${state._id}`)
       .then((res) => {
         console.log("user review data> ", res.data);
         setUserReviewData(res.data);
@@ -153,6 +153,7 @@ function ProfilePage() {
                       setIsReviewOpen={setIsReviewOpen}
                       key={review["_id"]["$oid"]}
                       review={review}
+                      userId={review.userId}
                       setReviewContent={setReviewContent}
                     />
                   );

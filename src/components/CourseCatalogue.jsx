@@ -12,7 +12,7 @@ const CourseCatalogue = ({ user }) => {
   const handleFetchClassData = async (codeRes) => {
     await axios
       //configured api route to localhost:5006 for mac
-      .get("http://localhost:5006/class")
+      .get("http://localhost:8000/classes")
       .then((res) => {
         setCourseData(res.data);
       })
@@ -45,7 +45,7 @@ const CourseCatalogue = ({ user }) => {
                 .filter((course) => {
                   if (input === "") return course;
                   else {
-                    return course.className.toLowerCase().includes(input);
+                    return course.coursename.toLowerCase().includes(input);
                   }
                 })
                 .map((course) => {

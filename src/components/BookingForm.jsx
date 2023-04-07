@@ -12,6 +12,8 @@ import {
 } from "react-icons/hi2";
 const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
   const userDetails = useLocation().state;
+  console.log("User Details: ")
+  console.log(userDetails)
   console.log(courseDesc, selectedBooking);
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -34,7 +36,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
           </div>
           <div className="py-5 px-4 md:px-10">
             <h1 className="mb-2 w-full text-start text-xl font-semibold  text-blue-700 dark:text-blue-600 ">
-              {courseDesc.className.replace(/-/g, " ")}
+              {courseDesc.coursename.replace(/-/g, " ")}
             </h1>
             <div className="gap-y-2 text-sm">
               <div className="py-5">
@@ -87,7 +89,7 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   userEmail: userDetails.email,
                   userName: userDetails.given_name,
                   orderID: uuid(),
-                  className: courseDesc.className.replace(/-/g, " "),
+                  coursename: courseDesc.coursename.replace(/-/g, " "),
                   coursePrice: courseDesc.fees,
                   //TO DO in future:
                   // fix issue where courseDescription string too long
@@ -96,8 +98,8 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   classID: Number(courseDesc["_id"]),
                   runID: Number(selectedBooking[0]),
                   // Hardcoded for testing purposes
-                  userID: "113532673980137782859",
-                  // userID: userDetails.id,
+                  // userID: "112532673980137782859",
+                  userID: userDetails["_id"],
                 },
                 userDetails,
               ]}
