@@ -25,7 +25,6 @@ const ReviewCard = ({ setIsReviewOpen, review, userId, setReviewContent }) => {
           setReviewContent(review);
           setIsReviewOpen(true);
         }}
-        // className="block max-w-md cursor-alias rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-800 dark:shadow-gray-700 dark:hover:bg-slate-900 sm:h-full sm:p-3 md:p-6"
       >
         <div className="p-2">
           <svg
@@ -49,7 +48,6 @@ const ReviewCard = ({ setIsReviewOpen, review, userId, setReviewContent }) => {
             </div>
             <p
               className="h-24 px-4 py-1 text-lg font-semibold leading-6 text-gray-700 line-clamp-4 dark:text-gray-400 md:h-36 md:line-clamp-6"
-              // className="h-24 text-center font-normal text-gray-700 line-clamp-4 dark:text-gray-400 md:h-36 md:text-start md:line-clamp-6"
             >
               {review.reviewContent}
             </p>

@@ -13,8 +13,6 @@ export default function PaymentPage() {
   const [clientSecret, setClientSecret] = useState();
   const data = useLocation().state;
 
-  console.log(data);
-
   function makePayment() {
     fetch("http://localhost:5008/booking/createPayment", {
       method: "POST",
@@ -39,7 +37,6 @@ export default function PaymentPage() {
     makePayment();
   }, []);
   useEffect(() => {
-    console.log(clientSecret);
   }, [clientSecret]);
   return (
     <>

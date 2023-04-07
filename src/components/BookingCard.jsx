@@ -26,7 +26,7 @@ const BookingCard = () => {
   }, [])
   // Checking
   useEffect(()=>{
-    console.log(selectedTime + "Date Changed")
+
   }, [selectedTime]);
 
   // Calendar selection

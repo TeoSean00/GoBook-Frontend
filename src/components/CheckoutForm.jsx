@@ -46,7 +46,6 @@ export default function CheckoutForm({ userData, clientSecret }) {
       coursename: userData["coursename"]?.replace(/\s+/g, "-"),
       runID: userData["runID"].toString(),
       orderID: userData["orderID"],
-      // orderID: "70143f68-3df9-419e-b221-e5d6c169da93",
       userID: userData["userID"],
       classId: userData["classID"].toString(),
     },
@@ -72,14 +71,13 @@ export default function CheckoutForm({ userData, clientSecret }) {
     // const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
-      console.log("WebSocket connection opened");
+
     });
 
     socket.on("disconnect", () => {
-      console.log("WebSocket connection closed");
+
     });
     socket.on("message", (data) => {
-      console.log("Received message:", data);
       // Update the React state or UI based on the message data
       setRecommendation(data.recommendation);
     });
@@ -89,10 +87,8 @@ export default function CheckoutForm({ userData, clientSecret }) {
   }, []);
 
   useEffect(() => {
-    console.log("recommendation is", recommendation);
     if (recommendation !== undefined) {
       if (recommendation.length > 0) {
-        console.log("recommendation is", recommendation);
         updateRecommendedClasses(recommendation);
       }
     }
@@ -104,7 +100,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
         recommended_classes: classes,
       })
       .then((res) => {
-        console.log("Response is " + res);
+
       })
       .catch((err) => {
         console.log(err);
@@ -112,14 +108,10 @@ export default function CheckoutForm({ userData, clientSecret }) {
   };
 
   const doPurchase = async () => {
-    console.log("FORM DATA");
-    console.log(formData);
     await axios
     // error with this route for now 
       .post("http://localhost:8000/process_booking/update_payment", formData)
       .then((res) => {
-        console.log("Response is ");
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);

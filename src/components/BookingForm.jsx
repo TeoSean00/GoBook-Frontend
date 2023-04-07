@@ -12,9 +12,6 @@ import {
 } from "react-icons/hi2";
 const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
   const userDetails = useLocation().state;
-  console.log("User Details: ")
-  console.log(userDetails)
-  console.log(courseDesc, selectedBooking);
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
@@ -91,14 +88,9 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   orderID: uuid(),
                   coursename: courseDesc.coursename.replace(/-/g, " "),
                   coursePrice: courseDesc.fees,
-                  //TO DO in future:
-                  // fix issue where courseDescription string too long
-                  // which makes it an invalid value on stripe's PaymentIntent function
                   courseDescription: courseDesc.content.slice(0, 10),
                   classID: Number(courseDesc["_id"]),
                   runID: Number(selectedBooking[0]),
-                  // Hardcoded for testing purposes
-                  // userID: "112532673980137782859",
                   userID: userDetails["_id"],
                 },
                 userDetails,
@@ -107,7 +99,6 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
               <Button
                 name="Proceed to Payment"
                 color="green"
-                // onClick={() => setIsModalOpen(false)}
               />
             </Link>
             <Button

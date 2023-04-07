@@ -20,7 +20,6 @@ import {
 function ProfilePage() {
   const location = useLocation();
   const state = location.state;
-  console.log("current state> ", state);
   const [userCourseData, setUserCourseData] = useState([]);
   const [userReviewData, setUserReviewData] = useState([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
@@ -30,7 +29,6 @@ function ProfilePage() {
     await axios
       .get(`http://localhost:8000/classes/getUserClass/${state._id}`)
       .then((res) => {
-        console.log("user class data> ", res.data);
         setUserCourseData(res.data);
       })
       .catch((error) => {
@@ -45,7 +43,6 @@ function ProfilePage() {
     await axios
       .get(`http://localhost:8000/reviews/user/${state._id}`)
       .then((res) => {
-        console.log("user review data> ", res.data);
         setUserReviewData(res.data);
       })
       .catch((error) => {
