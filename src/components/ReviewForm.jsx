@@ -9,7 +9,7 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
     const payload = Object.fromEntries(formData);
     // console.log(payload);
     await axios
-    //  able to submit on kong route
+      //  able to submit on kong route
       .post(`http://localhost:8000/reviews`, {
         userId: user["_id"],
         classId: payload.course,
@@ -40,7 +40,7 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
       // currently since db has no classes attended, ui wont display
       .get(`http://localhost:8000/classes/getUserClass/${user._id}`)
       .then((res) => {
-        // console.log("user class data> ", res.data);
+        console.log("user class data> ", res.data);
         setUserCourseData(res.data);
       })
       .catch((error) => {
@@ -81,7 +81,11 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
                       {userCourseData?.map((course) => {
                         return (
                           <option key={course["_id"]} value={course["_id"]}>
-                            {course.className.replace(/-/g, " ")}
+                            {course.coursename.replace(/-/g, " ").length < 50
+                              ? course.coursename.replace(/-/g, " ")
+                              : course.coursename
+                                  .replace(/-/g, " ")
+                                  .substring(0, 40) + "..."}
                           </option>
                         );
                       })}
@@ -99,7 +103,7 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
                       name="rating"
                       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     >
-                      <option defaultValue="true" value="5">
+                      <option className="w-10" defaultValue="true" value="5">
                         5
                       </option>
                       <option value="4">4</option>
