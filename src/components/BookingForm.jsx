@@ -96,8 +96,8 @@ const BookingForm = ({ setIsModalOpen, selectedBooking, courseDesc }) => {
                   classID: Number(courseDesc["_id"]),
                   runID: Number(selectedBooking[0]),
                   // Hardcoded for testing purposes
-                  userID: "112532673980137782859",
-                  // userID: userDetails.id,
+                  // userID: "112532673980137782859",
+                  userID: userDetails.id,
                 },
                 userDetails,
               ]}
