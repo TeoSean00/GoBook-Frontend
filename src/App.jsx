@@ -8,12 +8,13 @@ import Button from "./components/Button";
 import Hero from "./components/Hero";
 import CourseCatalogue from "./components/CourseCatalogue";
 import RecommendationCatalogue from "./components/Recommendation";
-import TestPurchase from "./components/TestPurchase";
+import ReviewForm from "./components/ReviewForm";
+
 //socket io listener
 import io from "socket.io-client";
 function App() {
   const [user, setUser] = useState(null);
-
+  const [isReviewForm, setIsReviewForm] = useState(false);
   const handleFetch = async (codeResponse) => {
     await axios
       .get(
@@ -26,18 +27,18 @@ function App() {
         }
       )
       .then(async (res) => {
-        console.log("Google OAuth User data> ", res.data)
+        console.log("Google OAuth User data> ", res.data);
         await axios
           .post("http://127.0.0.1:5001/users/addUser", res.data)
-            .then(async (userDBData) => {
-              localStorage.setItem("user", JSON.stringify(userDBData.data));
-              setUser(userDBData.data);
-              console.log("User data fetched from backend> ", userDBData.data)
-              toast.success("Successfully Logged In", { duration: 10000 });
-            })
-            .catch((error) => {
-              console.log("error making POST request", error)
-            })
+          .then(async (userDBData) => {
+            localStorage.setItem("user", JSON.stringify(userDBData.data));
+            setUser(userDBData.data);
+            console.log("User data fetched from backend> ", userDBData.data);
+            toast.success("Successfully Logged In", { duration: 10000 });
+          })
+          .catch((error) => {
+            console.log("error making POST request", error);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -72,7 +73,7 @@ function App() {
       <div>
         {user ? (
           <Layout user={user}>
-            <Hero user={user} />
+            <Hero user={user} setIsReviewForm={setIsReviewForm} />
             <CourseCatalogue user={user} />
             <div className="mt-2"></div>
             <RecommendationCatalogue user={user} />
@@ -84,7 +85,11 @@ function App() {
               }}
               color="red"
             />
-            {/* <TestPurchase /> */}
+            {isReviewForm ? (
+              <ReviewForm setIsReviewForm={setIsReviewForm} user={user} />
+            ) : (
+              ""
+            )}
           </Layout>
         ) : (
           <Login handleLogin={handleLogin} />
