@@ -114,7 +114,7 @@ const RecommendationCatalogue = ({ user }) => {
             <div className="py-12 ">
               <div className="text-center text-gray-700 md:pb-16">
                 <h1 className="text-3xl font-medium leading-tight tracking-tight dark:text-gray-400">
-                  No recommendations generated yet, book a class first!
+                  No reviews generated yet, book a class first!
                 </h1>
               </div>
             </div>
