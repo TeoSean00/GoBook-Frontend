@@ -29,7 +29,7 @@ const TestPurchase = ({ user }) => {
             "coursename": "Advanced-Information-Management-Classroom-Asynchronous",
             "runID": "1",
             "orderID": "70143f68-3df9-419e-b221-e5d6c169da93",
-            "userID": "113532673980137782859",
+            "userID": "112532673980137782859",
             "classId": "1"
         },
         "object": "payment_intent",

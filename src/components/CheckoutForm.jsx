@@ -47,6 +47,7 @@ export default function CheckoutForm(userData) {
           "coursename": userData.userData["className"].replace(/\s+/g, '-'),
           "runID": userData.userData["runID"].toString(),
           "orderID":"70143f68-3df9-419e-b221-e5d6c169da93",
+          // hardcoded for testing purposes
           "userID": userData.userData["userID"],
           "classId": userData.userData["classID"].toString(),
       },
