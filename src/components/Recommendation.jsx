@@ -14,7 +14,7 @@ const RecommendationCatalogue = ({ user }) => {
   const [recommendation, setRecommendation] = useState();
 
   useEffect(() => {
-    const socket = io("http://localhost:5011");
+    const socket = io("http://localhost:8000/consumer_service");
 
     socket.on("connect", () => {
       console.log("WebSocket connection opened");
@@ -51,7 +51,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const updateRecommendedClasses = async (classes) => {
     await axios
-      .put(`http://localhost:5001/users/addrecc/112532673980137782859`, {
+      .put(`http://localhost:8000/users/recc/112532673980137782859`, {
         recommended_classes: classes,
       })
       .then((res) => {
@@ -64,7 +64,8 @@ const RecommendationCatalogue = ({ user }) => {
 
   const getRecommendedClasses = async () => {
     await axios
-      .get(`http://localhost:5001/users/getUser/112532673980137782859`)
+    // to update with Kong route later
+      .get(`http://localhost:8000/users/112532673980137782859`)
       .then((res) => {
         var recommended_classes = res.data.recommended_classes;
         setRecommendation(recommended_classes);
