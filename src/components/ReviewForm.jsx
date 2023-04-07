@@ -9,7 +9,8 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
     const payload = Object.fromEntries(formData);
     // console.log(payload);
     await axios
-      .post(`http://localhost:5004/review`, {
+    //  able to submit on kong route
+      .post(`http://localhost:8000/reviews`, {
         userId: user["_id"],
         classId: payload.course,
         date: currentDate,
@@ -36,7 +37,8 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
   //get courses user has attened
   const getCoursesTaken = async () => {
     await axios
-      .get(`http://localhost:5006/class/getUserClass/${user._id}`)
+      // currently since db has no classes attended, ui wont display
+      .get(`http://localhost:8000/classes/getUserClass/${user._id}`)
       .then((res) => {
         console.log("user class data> ", res.data);
         setUserCourseData(res.data);
