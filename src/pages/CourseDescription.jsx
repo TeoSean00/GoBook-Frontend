@@ -34,7 +34,6 @@ const CourseDescription = () => {
     handleFetchCourseDescription();
   }, []);
   useEffect(() => {
-    console.log("🚀 reviewContent:", reviewContent);
   }, [reviewContent]);
   return (
     <Layout user={state}>

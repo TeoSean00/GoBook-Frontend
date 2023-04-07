@@ -11,7 +11,6 @@ import io from "socket.io-client";
 const RecommendationCatalogue = ({ user }) => {
   const location = useLocation();
   const state = location.state;
-  console.log("current state> ", user._id);
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
   const [recommendation, setRecommendation] = useState();
@@ -23,15 +22,12 @@ const RecommendationCatalogue = ({ user }) => {
     // const socket = io("http://localhost:5011");
 
     socket.on("connect", () => {
-      console.log("WebSocket connection opened");
     });
 
     socket.on("disconnect", () => {
-      console.log("WebSocket connection closed");
     });
 
     socket.on("message", (data) => {
-      console.log("Received message:", data);
       if (data.userId == user._id) {
         setRecommendation(data.recommendation);
       }
@@ -45,10 +41,8 @@ const RecommendationCatalogue = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    console.log("recommendation is", recommendation);
     if (recommendation !== undefined) {
       if (recommendation.length > 0) {
-        console.log("recommendation is", recommendation);
         updateRecommendedClasses(recommendation);
       }
     }
@@ -60,7 +54,6 @@ const RecommendationCatalogue = ({ user }) => {
         recommended_classes: classes,
       })
       .then((res) => {
-        console.log("Response is " + res);
       })
       .catch((err) => {
         console.log(err);

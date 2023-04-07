@@ -27,13 +27,11 @@ function App() {
         }
       )
       .then(async (res) => {
-        console.log("Google OAuth User data> ", res.data);
         await axios
           .post("http://127.0.0.1:8000/users/addUser", res.data)
           .then(async (userDBData) => {
             localStorage.setItem("user", JSON.stringify(userDBData.data));
             setUser(userDBData.data);
-            console.log("User data fetched from backend> ", userDBData.data);
             toast.success("Successfully Logged In", { duration: 10000 });
           })
           .catch((error) => {
@@ -51,7 +49,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("🚀 ~ file: App.jsx:42 ~ App ~ user:", user);
   }, [user]);
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");

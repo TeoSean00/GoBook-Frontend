@@ -1,10 +1,4 @@
 const Booking = ({ timeslots, setSelectedBooking, maxClassSize }) => {
-  console.log(timeslots);
-  // return false if no slots left
-  // function checkSlots(run) {
-  //   return run[1].availableSlots === 0 ? false : true;
-  // }
-  // timeslots = timeslots.filter(checkSlots);
   return (
     <table className="w-full table-auto border border-gray-200 text-left text-xs dark:border-gray-700">
       <thead className=" bg-gray-200 text-center font-medium text-gray-600 dark:bg-gray-900 dark:text-white">

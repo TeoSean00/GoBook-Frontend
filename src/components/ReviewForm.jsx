@@ -7,7 +7,6 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
-    // console.log(payload);
     await axios
       //  able to submit on kong route
       .post(`http://localhost:8000/reviews`, {
@@ -18,7 +17,6 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
         reviewContent: payload.review,
       })
       .then((res) => {
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +38,6 @@ const ReviewModal = ({ setIsReviewForm, user }) => {
       // currently since db has no classes attended, ui wont display
       .get(`http://localhost:8000/classes/getUserClass/${user._id}`)
       .then((res) => {
-        console.log("user class data> ", res.data);
         setUserCourseData(res.data);
       })
       .catch((error) => {
