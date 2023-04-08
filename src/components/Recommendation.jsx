@@ -13,7 +13,7 @@ const RecommendationCatalogue = ({ user }) => {
   const state = location.state;
   const [parent, enableAnimations] = useAutoAnimate({ duration: 200 });
   const [input, setInput] = useState("");
-  const [recommendation, setRecommendation] = useState();
+  const [recommendation, setRecommendation] = useState([]);
 
   useEffect(() => {
     const socket = io("http://localhost:8000", {
@@ -21,11 +21,9 @@ const RecommendationCatalogue = ({ user }) => {
     });
     // const socket = io("http://localhost:5011");
 
-    socket.on("connect", () => {
-    });
+    socket.on("connect", () => {});
 
-    socket.on("disconnect", () => {
-    });
+    socket.on("disconnect", () => {});
 
     socket.on("message", (data) => {
       if (data.userId == user._id) {
@@ -46,6 +44,7 @@ const RecommendationCatalogue = ({ user }) => {
         updateRecommendedClasses(recommendation);
       }
     }
+    console.log(recommendation);
   }, [recommendation]);
 
   const updateRecommendedClasses = async (classes) => {
@@ -53,8 +52,7 @@ const RecommendationCatalogue = ({ user }) => {
       .put(`http://localhost:8000/users/recc/${user._id}`, {
         recommended_classes: classes,
       })
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -62,7 +60,7 @@ const RecommendationCatalogue = ({ user }) => {
 
   const getRecommendedClasses = async () => {
     await axios
-    // to update with Kong route later
+      // to update with Kong route later
       .get(`http://localhost:8000/users/${user._id}`)
       .then((res) => {
         var recommended_classes = res.data.recommended_classes;
@@ -84,7 +82,7 @@ const RecommendationCatalogue = ({ user }) => {
         </h1>
 
         <div ref={parent} className="flex flex-col items-center ">
-          {recommendation?.length !== 0 ? (
+          {recommendation.length !== 0 ? (
             <CourseCardLayout>
               {recommendation
                 ?.filter((course) => {

@@ -70,13 +70,9 @@ export default function CheckoutForm({ userData, clientSecret }) {
     });
     // const socket = io("http://localhost:5011");
 
-    socket.on("connect", () => {
+    socket.on("connect", () => {});
 
-    });
-
-    socket.on("disconnect", () => {
-
-    });
+    socket.on("disconnect", () => {});
     socket.on("message", (data) => {
       // Update the React state or UI based on the message data
       console.log(data);
@@ -101,9 +97,7 @@ export default function CheckoutForm({ userData, clientSecret }) {
       .put(`http://localhost:8000/users/recc/${userData["userID"]}`, {
         recommended_classes: classes,
       })
-      .then((res) => {
-
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -111,10 +105,9 @@ export default function CheckoutForm({ userData, clientSecret }) {
 
   const doPurchase = async () => {
     await axios
-    // error with this route for now 
+      // error with this route for now
       .post("http://localhost:8000/process_booking/update_payment", formData)
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -206,8 +199,6 @@ export default function CheckoutForm({ userData, clientSecret }) {
       >
         <span id="button-text">{isLoading ? "Processing..." : "Pay now"}</span>
       </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
     </form>
   );
 }
